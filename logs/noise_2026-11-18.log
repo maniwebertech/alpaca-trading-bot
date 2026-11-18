@@ -64,3 +64,17 @@
 2026-11-18 15:00:23 ET  INFO    Bar 14:55 close=658.51 | band 668.80 / 649.39 | VWAP 658.51 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000 | CHECK
 2026-11-18 15:00:23 ET  INFO    Check 15:00: no signal.
 2026-11-18 15:02:03 ET  INFO    HOURLY REPORT | equity 100000 | day P&L +0 (+0.00%) | position 0 | fills today 0 | daily stop room $1500
+2026-11-18 15:02:04 ET  INFO    Log uploaded to GitHub.
+2026-11-18 15:05:20 ET  INFO    Bar 15:00 close=658.74 | band 669.07 / 649.11 | VWAP 658.52 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 15:10:20 ET  INFO    Bar 15:05 close=659.05 | band 669.23 / 648.96 | VWAP 658.53 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 15:15:21 ET  INFO    Bar 15:10 close=658.87 | band 669.42 / 648.77 | VWAP 658.53 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 15:20:22 ET  INFO    Bar 15:15 close=658.36 | band 669.43 / 648.76 | VWAP 658.53 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 15:25:22 ET  INFO    Bar 15:20 close=657.59 | band 669.38 / 648.81 | VWAP 658.53 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 15:30:22 ET  INFO    Bar 15:25 close=657.94 | band 669.53 / 648.66 | VWAP 658.53 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000 | CHECK
+2026-11-18 15:30:22 ET  INFO    Check 15:30: no signal.
+2026-11-18 15:35:23 ET  INFO    Bar 15:30 close=658.10 | band 669.40 / 648.79 | VWAP 658.52 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 15:40:24 ET  INFO    Bar 15:35 close=659.40 | band 669.59 / 648.61 | VWAP 658.53 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 15:45:24 ET  INFO    Bar 15:40 close=658.95 | band 669.53 / 648.66 | VWAP 658.54 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 15:50:20 ET  INFO    Bar 15:45 close=659.24 | band 669.45 / 648.74 | VWAP 658.55 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 15:55:20 ET  INFO    Bar 15:50 close=660.17 | band 668.96 / 649.23 | VWAP 658.61 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 16:01:00 ET  INFO    === Session done | day P&L +0 | equity 100000 ===
