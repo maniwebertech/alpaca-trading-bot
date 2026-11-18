@@ -295,6 +295,9 @@ class Bot:
                         log.error("Guard check failed: %s", exc)
                 if mins == 9 * 60 + 30 and now.second < 40 and self.position_qty():
                     self.flatten("position left over from a previous day")
+                # safety net inside the session: nothing may be open after 15:58 (trading hours end 16:00)
+                if mins == 15 * 60 + 58 and now.second < 30:
+                    self.flatten("end of session safety check (15:58)")
                 # right after each 5-minute bar closes
                 if now.minute % 5 == 0 and BAR_DELAY <= now.second < BAR_DELAY + 25:
                     try:
@@ -304,7 +307,8 @@ class Bot:
             time.sleep(5)
 
         if end.hour * 60 + end.minute >= 15 * 60 + 56:
-            self.flatten("end of session safety check")
+            if self.position_qty():
+                log.error("Position still open after 16:00 - check Alpaca. Not sending orders outside 9:30-16:00.")
             equity, sod, day_pnl = self.account()
             log.info("=== Session done | day P&L %+.0f | equity %.0f ===", day_pnl, equity)
         else:
