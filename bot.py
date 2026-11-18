@@ -51,7 +51,12 @@ def setup_logging() -> None:
     handlers = [logging.FileHandler(log_file, encoding="utf-8")]
     if sys.stdout is not None:  # pythonw.exe (hidden window) has no console
         handlers.append(logging.StreamHandler(sys.stdout))
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s  %(levelname)-7s %(message)s", handlers=handlers)
+    # Log times in New York time (ET), whether running on your PC or on GitHub's UTC servers.
+    formatter = logging.Formatter("%(asctime)s ET  %(levelname)-7s %(message)s")
+    formatter.converter = lambda ts: datetime.fromtimestamp(ts, NY_TZ).timetuple()
+    for handler in handlers:
+        handler.setFormatter(formatter)
+    logging.basicConfig(level=logging.INFO, handlers=handlers)
 
 
 # --------------------------------------------------------------------------- #
