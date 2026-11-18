@@ -6,15 +6,17 @@ name: Noise Band bot (QQQ)
 #   afternoon : 12:40 ET -> 16:01 ET (includes the 15:55 flatten)
 # Take profit / stop loss are bracket orders held by Alpaca, so they stay active during the hand-over.
 #
-# Cron is UTC and New York changes clocks, so there are two start times. The one that lands
-# around 9:15 ET runs; the one at ~8:15 ET exits at once (and in summer the 10:15 ET one waits
-# in the queue until the day is over, then exits).
-#   Summer (EDT): 13:15 UTC = 9:15 ET    Winter (EST): 14:15 UTC = 9:15 ET
+# GitHub's scheduler is "best effort" and sometimes skips runs, so instead of one start time
+# it tries every 10 minutes from 13:00 to 19:50 UTC (9:00 ET onwards, both seasons):
+#   - only one run can be active (concurrency group below); triggers that arrive while the bot
+#     is running wait in the queue, are replaced by newer ones, and the last one exits at 16:01 ET
+#   - a run that starts before 8:55 ET (winter, 13:xx UTC) exits at once
+#   - if a run is skipped or crashes, the next trigger restarts the bot within ~10 minutes;
+#     it rebuilds its state from Alpaca, so nothing is lost
 
 on:
   schedule:
-    - cron: "15 13 * * 1-5"
-    - cron: "15 14 * * 1-5"
+    - cron: "*/10 13-19 * * 1-5"
   workflow_dispatch:
     inputs:
       mode:
