@@ -167,6 +167,22 @@ def run(dry_run: bool) -> None:
     log.info("=== %s | MA %d/%d | qty %s | %s ===", symbol, config.SHORT_WINDOW,
              config.LONG_WINDOW, config.TRADE_QTY, "DRY RUN" if dry_run else "LIVE ORDERS (paper)")
 
+    # Connect to Alpaca first, so every log shows the keys work and the account state.
+    try:
+        client, paper = get_trading_client()
+    except RuntimeError:
+        if not dry_run:
+            raise
+        client, paper = None, True
+        log.info("No Alpaca keys found. Dry run continues without the account check.")
+    if client is not None:
+        acct = client.get_account()
+        log.info("Alpaca %s account %s...: status=%s cash=%s equity=%s",
+                 "PAPER" if paper else "LIVE", str(acct.account_number)[:3], acct.status.value
+                 if hasattr(acct.status, "value") else acct.status, acct.cash, acct.equity)
+        if not paper:
+            log.warning("ALPACA_PAPER=false: this is a LIVE account.")
+
     closes = fetch_prices(symbol, config.LOOKBACK_DAYS)
     log.info("Downloaded %d trading days (%s to %s).", len(closes),
              closes.index[0].date(), closes.index[-1].date())
@@ -183,16 +199,9 @@ def run(dry_run: bool) -> None:
         return
     log.info("Crossover detected: %s signal.", signal.upper())
 
-    # Connect to Alpaca (needed to check the position, even in dry-run when keys exist).
-    try:
-        client, paper = get_trading_client()
-    except RuntimeError as exc:
-        if dry_run:
-            log.info("Dry run without Alpaca keys: would %s %s %s.", signal, config.TRADE_QTY, symbol)
-            return
-        raise
-    if not paper:
-        log.warning("ALPACA_PAPER=false: this is a LIVE account.")
+    if client is None:
+        log.info("Dry run without Alpaca keys: would %s %s %s.", signal, config.TRADE_QTY, symbol)
+        return
 
     held = current_position_qty(client, symbol)
     log.info("Current position: %s shares of %s.", held, symbol)
