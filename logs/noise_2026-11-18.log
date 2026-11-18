@@ -8,3 +8,17 @@
 2026-11-18 02:48:18 ET  INFO    Bar 15:55 close=657.06 | band 670.92 / 654.05 | VWAP 654.47 | 20d SMA 692.63 | pos 0 | day P&L +0 | equity 100000
 2026-11-18 02:48:18 ET  INFO    Check 16:00: no signal.
 2026-11-18 02:48:18 ET  INFO    Check run finished (no orders sent).
+2026-11-18 10:02:13 ET  INFO    === Noise Band bot | QQQ Ultra-Safe | PAPER | ORDERS ON | until 12:40 ET ===
+2026-11-18 10:02:13 ET  INFO    Equity 100000 | start of day 100000 | risk/trade $500 | daily stop -$1500 | halt below $92000 | target $108000
+2026-11-18 10:02:14 ET  INFO    Loaded 4056 history bars (2026-09-04 to 2026-11-17), feed=iex
+2026-11-18 10:30:24 ET  INFO    Bar 10:25 close=659.62 | band 667.26 / 650.92 | VWAP 659.19 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 10:30:24 ET  INFO    Check 10:30: no signal.
+2026-11-18 11:00:23 ET  INFO    Bar 10:55 close=658.43 | band 668.08 / 650.10 | VWAP 658.69 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 11:00:23 ET  INFO    Check 11:00: no signal.
+2026-11-18 11:30:24 ET  INFO    Bar 11:25 close=655.51 | band 667.11 / 651.07 | VWAP 658.05 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 11:30:24 ET  INFO    Check 11:30: no signal.
+2026-11-18 12:00:24 ET  INFO    Bar 11:55 close=656.20 | band 668.40 / 649.78 | VWAP 657.80 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 12:00:24 ET  INFO    Check 12:00: no signal.
+2026-11-18 12:30:25 ET  INFO    Bar 12:25 close=661.53 | band 668.52 / 649.66 | VWAP 658.04 | 20d SMA 689.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 12:30:25 ET  INFO    Check 12:30: no signal.
+2026-11-18 12:40:02 ET  INFO    === Handing over to the next job (position 0) ===
