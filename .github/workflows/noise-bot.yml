@@ -1,0 +1,95 @@
+name: Noise Band bot (QQQ)
+
+# Runs the bot through the whole New York session every weekday.
+# GitHub limits one job to 6 hours, so the day is split into two jobs that run back to back:
+#   morning   : start (~9:15 ET) -> 12:40 ET
+#   afternoon : 12:40 ET -> 16:01 ET (includes the 15:55 flatten)
+# Take profit / stop loss are bracket orders held by Alpaca, so they stay active during the hand-over.
+#
+# Cron is UTC and New York changes clocks, so there are two start times. The one that lands
+# around 9:15 ET runs; the one at ~8:15 ET exits at once (and in summer the 10:15 ET one waits
+# in the queue until the day is over, then exits).
+#   Summer (EDT): 13:15 UTC = 9:15 ET    Winter (EST): 14:15 UTC = 9:15 ET
+
+on:
+  schedule:
+    - cron: "15 13 * * 1-5"
+    - cron: "15 14 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "What to run"
+        type: choice
+        default: check
+        options:
+          - check          # evaluate the latest bar once, never sends orders
+          - full-day-dry   # run the whole session but only log decisions
+          - full-day       # run the whole session and trade
+
+permissions:
+  contents: write
+
+concurrency:
+  group: noise-bot
+  cancel-in-progress: false
+
+env:
+  ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+  ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+  ALPACA_PAPER: "true"
+
+jobs:
+  morning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 290
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main   # newest code + the morning's log
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run bot (morning)
+        run: |
+          MODE="${{ github.event_name == 'schedule' && 'full-day' || inputs.mode }}"
+          case "$MODE" in
+            check)        python noise_bot.py --check ;;
+            full-day-dry) python noise_bot.py --until 12:40 --dry-run ;;
+            *)            python noise_bot.py --until 12:40 ;;
+          esac
+      - name: Save logs
+        if: always()
+        run: |
+          git config user.name "trading-bot"
+          git config user.email "trading-bot@users.noreply.github.com"
+          git add logs/ 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m "Noise bot log $(TZ=America/New_York date +%F) (morning)"; git pull --rebase; git push; }
+
+  afternoon:
+    needs: morning
+    if: ${{ !cancelled() && (github.event_name == 'schedule' || inputs.mode != 'check') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 290
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main   # newest code + the morning's log
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run bot (afternoon)
+        run: |
+          MODE="${{ github.event_name == 'schedule' && 'full-day' || inputs.mode }}"
+          if [ "$MODE" = "full-day-dry" ]; then python noise_bot.py --until 16:01 --dry-run
+          else python noise_bot.py --until 16:01; fi
+      - name: Save logs
+        if: always()
+        run: |
+          git config user.name "trading-bot"
+          git config user.email "trading-bot@users.noreply.github.com"
+          git add logs/ 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m "Noise bot log $(TZ=America/New_York date +%F) (afternoon)"; git pull --rebase; git push; }
