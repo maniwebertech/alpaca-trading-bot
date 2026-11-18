@@ -3,3 +3,8 @@
 2026-11-18 02:46:39 ET  INFO    Bar 15:55 close=657.06 | band 670.92 / 654.05 | VWAP 654.47 | 20d SMA 692.63 | pos 0 | day P&L +0 | equity 100000
 2026-11-18 02:46:39 ET  INFO    Check 16:00: no signal.
 2026-11-18 02:46:39 ET  INFO    Check run finished (no orders sent).
+2026-11-18 02:48:18 ET  INFO    === CHECK RUN | QQQ Ultra-Safe | equity 100000 | position 0 ===
+2026-11-18 02:48:18 ET  INFO    Loaded 4056 history bars (2026-09-04 to 2026-11-17), feed=iex
+2026-11-18 02:48:18 ET  INFO    Bar 15:55 close=657.06 | band 670.92 / 654.05 | VWAP 654.47 | 20d SMA 692.63 | pos 0 | day P&L +0 | equity 100000
+2026-11-18 02:48:18 ET  INFO    Check 16:00: no signal.
+2026-11-18 02:48:18 ET  INFO    Check run finished (no orders sent).
