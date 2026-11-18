@@ -1,0 +1,72 @@
+name: Trading bot
+
+on:
+  schedule:
+    # GitHub cron uses UTC. New York changes clocks for daylight saving, so we start at
+    # both 13:00 and 14:00 UTC on weekdays. Whichever one is ~9:00 AM New York time runs
+    # the bot (it then waits until exactly 9:30); the other exits within seconds.
+    #   Summer (EDT): 13:00 UTC = 9:00 AM NY   Winter (EST): 14:00 UTC = 9:00 AM NY
+    - cron: "0 13 * * 1-5"
+    - cron: "0 14 * * 1-5"
+
+  # Lets you start it by hand from the Actions tab (for testing).
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "How to run"
+        type: choice
+        default: dry-run
+        options:
+          - dry-run      # check for a signal right now, never send an order
+          - run-now      # check right now and send an order if there is a signal
+
+permissions:
+  contents: write   # needed to save the daily log files back into the repository
+
+concurrency:
+  group: trading-bot
+  cancel-in-progress: false
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install packages
+        run: pip install -r requirements.txt
+
+      - name: Run bot
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          ALPACA_PAPER: "true"
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            python bot.py --scheduled
+          elif [ "${{ inputs.mode }}" = "run-now" ]; then
+            python bot.py
+          else
+            python bot.py --dry-run
+          fi
+
+      - name: Save log files to the repository
+        if: always()
+        run: |
+          git config user.name "trading-bot"
+          git config user.email "trading-bot@users.noreply.github.com"
+          git add logs/ 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No new log entries."
+          else
+            git commit -m "Bot log $(TZ=America/New_York date +%Y-%m-%d)"
+            git pull --rebase
+            git push
+          fi

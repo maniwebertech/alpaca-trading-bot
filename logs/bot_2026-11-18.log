@@ -1,0 +1,10 @@
+2026-11-18 12:09:07,085  INFO    === AAPL | MA 20/50 | qty 1 | DRY RUN ===
+2026-11-18 12:09:08,905  INFO    Downloaded 100 trading days (2026-06-29 to 2026-11-17).
+2026-11-18 12:09:08,907  INFO    Previous 2026-11-16  close=352.78  MA20=346.42  MA50=339.45
+2026-11-18 12:09:08,907  INFO    Latest   2026-11-17  close=351.91  MA20=347.05  MA50=340.17
+2026-11-18 12:09:08,907  INFO    No crossover. Nothing to do.
+2026-11-18 12:12:26,165  INFO    === AAPL | MA 20/50 | qty 1 | DRY RUN ===
+2026-11-18 12:12:27,720  INFO    Downloaded 100 trading days (2026-06-29 to 2026-11-17).
+2026-11-18 12:12:27,721  INFO    Previous 2026-11-16  close=352.78  MA20=346.42  MA50=339.45
+2026-11-18 12:12:27,721  INFO    Latest   2026-11-17  close=351.91  MA20=347.05  MA50=340.17
+2026-11-18 12:12:27,721  INFO    No crossover. Nothing to do.
