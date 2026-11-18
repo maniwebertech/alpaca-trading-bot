@@ -62,6 +62,30 @@ def setup_logging():
     logging.basicConfig(level=logging.INFO, handlers=handlers)
 
 
+def publish_log():
+    """On GitHub Actions: commit the logs folder and push, so the log can be read during the day.
+    Does nothing on your PC. Never stops the bot if it fails."""
+    if os.getenv("GITHUB_ACTIONS") != "true":
+        return
+    import subprocess
+    cmds = [
+        ["git", "config", "user.name", "trading-bot"],
+        ["git", "config", "user.email", "trading-bot@users.noreply.github.com"],
+        ["git", "add", "logs"],
+        ["git", "commit", "-q", "-m", f"Noise bot log {datetime.now(NY):%Y-%m-%d %H:%M} ET (hourly)"],
+        ["git", "pull", "-q", "--rebase", "--autostash"],
+        ["git", "push", "-q"],
+    ]
+    for c in cmds:
+        r = subprocess.run(c, cwd=BASE, capture_output=True, text=True, timeout=60)
+        if r.returncode != 0 and c[1] == "commit":
+            return  # nothing new to save
+        if r.returncode != 0:
+            log.warning("Log upload step %s failed: %s", " ".join(c[:2]), (r.stderr or r.stdout).strip()[:200])
+            return
+    log.info("Log uploaded to GitHub.")
+
+
 class Bot:
     def __init__(self, dry_run: bool):
         load_dotenv(BASE / ".env")
@@ -169,12 +193,12 @@ class Bot:
         r = rows[-1]
         d = eng.step(r.Index, r.open, r.high, r.low, r.close, r.volume, pos)
 
-        if d.is_check or d.action:
-            fmt = lambda x: "-" if x is None else f"{x:.2f}"
-            equity, sod, day_pnl = self.account()
-            log.info("Bar %s close=%.2f | band %s / %s | VWAP %s | 20d SMA %s | pos %d | day P&L %+.0f | equity %.0f",
-                     r.Index.strftime("%H:%M"), r.close, fmt(d.upper), fmt(d.lower), fmt(d.vwap), fmt(d.trend_sma),
-                     pos, day_pnl, equity)
+        # status line for every finished 5-minute bar
+        fmt = lambda x: "-" if x is None else f"{x:.2f}"
+        equity, sod, day_pnl = self.account()
+        log.info("Bar %s close=%.2f | band %s / %s | VWAP %s | 20d SMA %s | pos %d | day P&L %+.0f | equity %.0f%s",
+                 r.Index.strftime("%H:%M"), r.close, fmt(d.upper), fmt(d.lower), fmt(d.vwap), fmt(d.trend_sma),
+                 pos, day_pnl, equity, " | CHECK" if d.is_check else "")
 
         if d.action == "flatten_now":
             self.flatten(d.reason)
@@ -217,6 +241,21 @@ class Bot:
             else:
                 log.error("Order failed: %s", exc)
 
+    # ---------------------------------------------------------------- report
+    def hourly_report(self):
+        try:
+            equity, sod, day_pnl = self.account()
+            today = datetime.now(NY).replace(hour=0, minute=0, second=0, microsecond=0)
+            fills = [o for o in self.trade.get_orders(GetOrdersRequest(
+                status=QueryOrderStatus.CLOSED, symbols=[self.sym], after=today, limit=200))
+                if o.filled_at is not None]
+            log.info("HOURLY REPORT | equity %.0f | day P&L %+.0f (%+.2f%%) | position %d | fills today %d | "
+                     "daily stop room $%.0f", equity, day_pnl, day_pnl / sod * 100 if sod else 0,
+                     self.position_qty(), len(fills), self.rules.daily_stop_usd(sod) + day_pnl)
+        except Exception as exc:
+            log.warning("Hourly report failed: %s", exc)
+        publish_log()
+
     # ------------------------------------------------------------------ main
     def run(self, until_hm: tuple[int, int]):
         clock = self.trade.get_clock()
@@ -237,11 +276,16 @@ class Bot:
 
         end = now.replace(hour=until_hm[0], minute=until_hm[1], second=0, microsecond=0)
         last_guard = 0.0
+        last_report_hour = now.hour
         while True:
             now = datetime.now(NY)
             if now >= end:
                 break
             mins = now.hour * 60 + now.minute
+            # hourly report, uploaded to GitHub (at :02, clear of the bar evaluation at :00)
+            if now.hour != last_report_hour and now.minute >= 2:
+                last_report_hour = now.hour
+                self.hourly_report()
             if 9 * 60 + 30 <= mins < 16 * 60:
                 if time.time() - last_guard >= 30:
                     last_guard = time.time()
