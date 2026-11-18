@@ -20,3 +20,9 @@
 2026-11-18 07:17:38,850  INFO    Previous 2026-11-16  close=352.78  MA20=346.42  MA50=339.45
 2026-11-18 07:17:38,850  INFO    Latest   2026-11-17  close=351.91  MA20=347.05  MA50=340.17
 2026-11-18 07:17:38,850  INFO    No crossover. Nothing to do.
+2026-11-18 02:19:14,808 ET  INFO    === AAPL | MA 20/50 | qty 1 | DRY RUN ===
+2026-11-18 02:19:15,032 ET  INFO    Alpaca PAPER account PA3...: status=ACTIVE cash=100000 equity=100000
+2026-11-18 02:19:15,764 ET  INFO    Downloaded 100 trading days (2026-06-29 to 2026-11-17).
+2026-11-18 02:19:15,766 ET  INFO    Previous 2026-11-16  close=352.78  MA20=346.42  MA50=339.45
+2026-11-18 02:19:15,766 ET  INFO    Latest   2026-11-17  close=351.91  MA20=347.05  MA50=340.17
+2026-11-18 02:19:15,766 ET  INFO    No crossover. Nothing to do.
