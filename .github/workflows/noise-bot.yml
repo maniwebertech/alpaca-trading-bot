@@ -2,21 +2,21 @@ name: Noise Band bot (QQQ)
 
 # Runs the bot through the whole New York session every weekday.
 # GitHub limits one job to 6 hours, so the day is split into two jobs that run back to back:
-#   morning   : start (~9:15 ET) -> 12:40 ET
+#   morning   : start (7:00-9:30 ET, waits for the open) -> 12:40 ET
 #   afternoon : 12:40 ET -> 16:01 ET (includes the 15:55 flatten)
 # Take profit / stop loss are bracket orders held by Alpaca, so they stay active during the hand-over.
 #
 # GitHub's scheduler is "best effort" and sometimes skips runs, so instead of one start time
-# it tries every 5 minutes (GitHub minimum) from 13:00 to 19:50 UTC (9:00 ET onwards, both seasons):
+# it tries every 5 minutes (GitHub minimum) from 11:00 to 19:55 UTC (7:00 ET onwards, both seasons):
 #   - only one run can be active (concurrency group below); triggers that arrive while the bot
 #     is running wait in the queue, are replaced by newer ones, and the last one exits at 16:01 ET
-#   - a run that starts before 8:55 ET (winter, 13:xx UTC) exits at once
+#   - a run that starts before 7:00 ET (winter, 11:xx UTC) exits at once; a run from 7:00 waits for 9:30
 #   - if a run is skipped or crashes, the next trigger restarts the bot within ~5 minutes;
 #     it rebuilds its state from Alpaca, so nothing is lost
 
 on:
   schedule:
-    - cron: "*/5 13-19 * * 1-5"
+    - cron: "*/5 11-19 * * 1-5"
   workflow_dispatch:
     inputs:
       mode:
@@ -43,7 +43,7 @@ env:
 jobs:
   morning:
     runs-on: ubuntu-latest
-    timeout-minutes: 290
+    timeout-minutes: 355   # GitHub max is 360; a 7:00 start runs 5h40m to 12:40
     steps:
       - uses: actions/checkout@v5
         with:

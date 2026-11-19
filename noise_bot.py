@@ -43,7 +43,7 @@ NY = ZoneInfo("America/New_York")
 BASE = Path(__file__).resolve().parent
 TICK = 0.01
 HISTORY_DAYS = 75          # calendar days of 5-min bars to rebuild the noise memory, ATR and trend
-EARLIEST_START = (8, 55)   # started earlier than this (wrong daylight-saving trigger) -> exit
+EARLIEST_START = (7, 0)    # started earlier than this -> exit (a start from 7:00 waits for the 9:30 open)
 LATEST_START = (15, 58)    # started later than this -> nothing left to do today
 BAR_DELAY = 20             # seconds after a bar closes before reading it (lets the bar finalize)
 
