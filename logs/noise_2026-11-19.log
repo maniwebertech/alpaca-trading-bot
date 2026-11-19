@@ -129,3 +129,19 @@ TypeError: Concatenation operation is not implemented for NumPy arrays, use np.c
 2026-11-19 10:00:23 ET  INFO    Bar 09:55 close=671.54 | band 676.21 / 654.68 | VWAP 673.21 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000 | CHECK
 2026-11-19 10:00:23 ET  INFO    Check 10:00: no signal.
 2026-11-19 10:02:04 ET  INFO    HOURLY REPORT | equity 100000 | day P&L +0 (+0.00%) | position 0 | fills today 0 | daily stop room $1500
+2026-11-19 10:02:06 ET  INFO    Log uploaded to GitHub.
+2026-11-19 10:05:21 ET  INFO    Bar 10:00 close=673.09 | band 676.58 / 654.31 | VWAP 673.15 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 10:10:23 ET  INFO    Bar 10:05 close=672.17 | band 676.76 / 654.14 | VWAP 673.09 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 10:15:24 ET  INFO    Bar 10:10 close=668.87 | band 677.63 / 653.28 | VWAP 672.91 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 10:20:21 ET  INFO    Bar 10:15 close=666.15 | band 677.60 / 653.31 | VWAP 672.18 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 10:25:22 ET  INFO    Bar 10:20 close=665.17 | band 677.72 / 653.19 | VWAP 671.07 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 10:30:23 ET  INFO    Bar 10:25 close=663.52 | band 677.54 / 653.37 | VWAP 670.24 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000 | CHECK
+2026-11-19 10:30:23 ET  INFO    Check 10:30: no signal.
+2026-11-19 10:35:25 ET  INFO    Bar 10:30 close=660.40 | band 677.64 / 653.27 | VWAP 668.95 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 10:40:21 ET  INFO    Bar 10:35 close=657.08 | band 677.80 / 653.11 | VWAP 668.23 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 10:45:22 ET  INFO    Bar 10:40 close=659.72 | band 678.13 / 652.79 | VWAP 666.86 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 10:50:24 ET  INFO    Bar 10:45 close=658.04 | band 678.35 / 652.58 | VWAP 666.20 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 10:55:20 ET  INFO    Bar 10:50 close=658.44 | band 678.85 / 652.09 | VWAP 665.48 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 11:00:21 ET  INFO    Bar 10:55 close=661.47 | band 678.39 / 652.54 | VWAP 665.02 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000 | CHECK
+2026-11-19 11:00:21 ET  INFO    Check 11:00: no signal.
+2026-11-19 11:02:02 ET  INFO    HOURLY REPORT | equity 100000 | day P&L +0 (+0.00%) | position 0 | fills today 0 | daily stop room $1500
