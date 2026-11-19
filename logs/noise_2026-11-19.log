@@ -198,3 +198,21 @@ TypeError: Concatenation operation is not implemented for NumPy arrays, use np.c
 2026-11-19 14:00:21 ET  INFO    SIGNAL SHORT (close below lower band): 210 shares = $500 risk at the stop ($136,416 position) | TP 648.33 (+1.27) SL 651.98 (-2.38)
 2026-11-19 14:00:21 ET  INFO    ORDER SENT: SELL 210 QQQ bracket | id d046d6e2-07f7-45ec-87a3-485865099d79 | status OrderStatus.PENDING_NEW
 2026-11-19 14:02:02 ET  INFO    HOURLY REPORT | equity 100124 | day P&L +124 (+0.12%) | position -210 | fills today 1 | daily stop room $1624
+2026-11-19 14:02:03 ET  INFO    Log uploaded to GitHub.
+2026-11-19 14:05:24 ET  INFO    Bar 14:00 close=648.94 | band 679.45 / 651.50 | VWAP 658.95 | 20d SMA 686.34 | pos -210 | day P&L +183 | equity 100183
+2026-11-19 14:10:25 ET  INFO    Bar 14:05 close=648.71 | band 679.28 / 651.66 | VWAP 658.85 | 20d SMA 686.34 | pos 0 | day P&L +214 | equity 100214
+2026-11-19 14:15:20 ET  INFO    Bar 14:10 close=649.04 | band 679.10 / 651.83 | VWAP 658.79 | 20d SMA 686.34 | pos 0 | day P&L +214 | equity 100214
+2026-11-19 14:20:21 ET  INFO    Bar 14:15 close=648.45 | band 679.13 / 651.81 | VWAP 658.74 | 20d SMA 686.34 | pos 0 | day P&L +214 | equity 100214
+2026-11-19 14:25:22 ET  INFO    Bar 14:20 close=649.23 | band 679.28 / 651.66 | VWAP 658.49 | 20d SMA 686.34 | pos 0 | day P&L +214 | equity 100214
+2026-11-19 14:30:23 ET  INFO    Bar 14:25 close=651.10 | band 679.29 / 651.65 | VWAP 658.36 | 20d SMA 686.34 | pos 0 | day P&L +214 | equity 100214 | CHECK
+2026-11-19 14:30:23 ET  INFO    SIGNAL SHORT (close below lower band): 210 shares = $500 risk at the stop ($136,731 position) | TP 649.83 (+1.27) SL 653.48 (-2.38)
+2026-11-19 14:30:23 ET  INFO    ORDER SENT: SELL 210 QQQ bracket | id 975ae8f5-93d3-40a0-9a47-923857ee6d56 | status OrderStatus.PENDING_NEW
+2026-11-19 14:35:25 ET  INFO    Bar 14:30 close=651.32 | band 679.43 / 651.51 | VWAP 658.32 | 20d SMA 686.34 | pos -32 | day P&L +389 | equity 100389
+2026-11-19 14:40:20 ET  INFO    Bar 14:35 close=649.24 | band 679.69 / 651.25 | VWAP 658.26 | 20d SMA 686.34 | pos 0 | day P&L +427 | equity 100427
+2026-11-19 14:45:21 ET  INFO    Bar 14:40 close=650.64 | band 679.47 / 651.48 | VWAP 658.23 | 20d SMA 686.34 | pos 0 | day P&L +427 | equity 100427
+2026-11-19 14:50:22 ET  INFO    Bar 14:45 close=649.21 | band 679.64 / 651.31 | VWAP 658.14 | 20d SMA 686.34 | pos 0 | day P&L +427 | equity 100427
+2026-11-19 14:55:23 ET  INFO    Bar 14:50 close=648.21 | band 679.27 / 651.67 | VWAP 657.97 | 20d SMA 686.34 | pos 0 | day P&L +427 | equity 100427
+2026-11-19 15:00:24 ET  INFO    Bar 14:55 close=647.45 | band 679.02 / 651.92 | VWAP 657.88 | 20d SMA 686.34 | pos 0 | day P&L +427 | equity 100427 | CHECK
+2026-11-19 15:00:24 ET  INFO    SIGNAL SHORT (close below lower band): 210 shares = $500 risk at the stop ($135,964 position) | TP 646.18 (+1.27) SL 649.83 (-2.38)
+2026-11-19 15:00:24 ET  INFO    ORDER SENT: SELL 210 QQQ bracket | id c346d9f3-8eb0-4bf7-b140-41fa684563d4 | status OrderStatus.PENDING_NEW
+2026-11-19 15:02:00 ET  INFO    HOURLY REPORT | equity 100470 | day P&L +470 (+0.47%) | position 0 | fills today 6 | daily stop room $1970
