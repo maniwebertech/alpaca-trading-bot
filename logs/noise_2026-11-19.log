@@ -171,3 +171,13 @@ TypeError: Concatenation operation is not implemented for NumPy arrays, use np.c
 2026-11-19 12:30:22 ET  INFO    Check 12:30: no signal.
 2026-11-19 12:35:23 ET  INFO    Bar 12:30 close=657.57 | band 678.87 / 652.07 | VWAP 660.69 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
 2026-11-19 12:40:04 ET  INFO    === Handing over to the next job (position 0) ===
+2026-11-19 12:40:24 ET  INFO    === Noise Band bot | QQQ Ultra-Safe | PAPER | ORDERS ON | until 16:01 ET ===
+2026-11-19 12:40:24 ET  INFO    Equity 100000 | start of day 100000 | risk/trade $500 | daily stop -$1500 | halt below $92000 | target $108000
+2026-11-19 12:40:24 ET  INFO    Loaded 4056 history bars (2026-09-08 to 2026-11-18), feed=iex
+2026-11-19 12:40:24 ET  INFO    Bar 12:35 close=654.91 | band 679.35 / 651.59 | VWAP 660.61 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 12:45:20 ET  INFO    Bar 12:40 close=652.35 | band 679.34 / 651.60 | VWAP 660.55 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 12:50:21 ET  INFO    Bar 12:45 close=653.57 | band 679.70 / 651.25 | VWAP 660.46 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 12:55:22 ET  INFO    Bar 12:50 close=655.11 | band 679.69 / 651.26 | VWAP 660.34 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000
+2026-11-19 13:00:23 ET  INFO    Bar 12:55 close=651.93 | band 679.46 / 651.49 | VWAP 660.28 | 20d SMA 686.34 | pos 0 | day P&L +0 | equity 100000 | CHECK
+2026-11-19 13:00:23 ET  INFO    Check 13:00: no signal.
+2026-11-19 13:02:03 ET  INFO    HOURLY REPORT | equity 100000 | day P&L +0 (+0.00%) | position 0 | fills today 0 | daily stop room $1500
