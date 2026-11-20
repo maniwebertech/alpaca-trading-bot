@@ -37,7 +37,8 @@ from alpaca.data.requests import StockBarsRequest, StockLatestQuoteRequest, Stoc
 from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 from alpaca.trading.client import TradingClient
 from alpaca.trading.enums import OrderSide, QueryOrderStatus, TimeInForce
-from alpaca.trading.requests import GetOrdersRequest, LimitOrderRequest, MarketOrderRequest
+from alpaca.trading.requests import (GetOrdersRequest, GetPortfolioHistoryRequest, LimitOrderRequest,
+                                     MarketOrderRequest)
 from dotenv import load_dotenv
 
 import config_gold as cfg
@@ -149,7 +150,8 @@ class Day:
     range_logged: bool = False
     traded: bool = False                       # one trade per day
     entry_tries: int = 0
-    halted: bool = False                       # equity guard fired
+    halted: bool = False                       # equity guard / prop stop fired
+    start_equity: float | None = None          # equity at broker midnight (prop daily loss base)
     equity_peak: float | None = None
     notes: set = field(default_factory=set)    # messages already logged today
 
@@ -178,6 +180,7 @@ class GoldBot:
         self.sl: float | None = None               # active stop of the open position
         self.last_status = None
         self.last_guard = 0.0
+        self.last_prop = 0.0
 
     # ------------------------------------------------------------------ data
     def quote(self) -> Quote | None:
@@ -278,11 +281,58 @@ class GoldBot:
             d.traded = any(float(o.filled_qty or 0) > 0 for o in mine) or d.entry_tries >= MAX_ENTRY_TRIES
         except Exception as exc:
             log.warning("Could not read today's orders: %s", exc)
+        d.start_equity = self.day_start_equity(d)
         self.day = d
+        log.info("Prop | %s | day start equity %.0f | bot daily stop at %.0f (firm %.0f) | bot halts below %.0f "
+                 "(firm %.0f) | target %.0f%s", cfg.PHASE, d.start_equity, self.daily_floor(), self.daily_floor(firm=True),
+                 self.max_floor(), self.max_floor(firm=True), self.target_equity(),
+                 "" if self.stop_at_target() else " (keeps trading)")
         log.info("Broker day %s | range %s-%s ET | trading until %s ET%s", d.key,
                  d.range_start.astimezone(NY).strftime("%a %H:%M"), d.range_end.astimezone(NY).strftime("%a %H:%M"),
                  from_broker(d.date + timedelta(hours=cfg.CLOSE_HOUR)).astimezone(NY).strftime("%a %H:%M"),
                  " | already traded today" if d.traded else "")
+
+    # ------------------------------------------------------------ prop rules
+    def day_start_equity(self, d: Day) -> float:
+        """Account equity at broker midnight (start of the prop firm's trading day)."""
+        midnight = from_broker(d.date)
+        try:
+            h = self.trade.get_portfolio_history(GetPortfolioHistoryRequest(
+                timeframe="15Min", start=midnight - timedelta(hours=3), end=midnight + timedelta(minutes=1),
+                extended_hours=True, intraday_reporting="continuous"))
+            pts = [(t, e) for t, e in zip(h.timestamp or [], h.equity or []) if e]
+            before = [e for t, e in pts if t <= midnight.timestamp()]
+            if before:
+                return float(before[-1])
+        except Exception as exc:
+            log.warning("Could not read portfolio history (%s); using current equity as the day start.", str(exc)[:120])
+        return self.equity()
+
+    def daily_floor(self, firm: bool = False) -> float:
+        pct = cfg.FIRM_DAILY_LOSS_PCT if firm else cfg.DAILY_STOP_PCT
+        base = self.day.start_equity
+        # firms base the daily limit on the starting balance or the day's opening equity: use the smaller amount
+        return base - min(cfg.ACCOUNT_SIZE, base) * pct / 100
+
+    def max_floor(self, firm: bool = False) -> float:
+        return cfg.ACCOUNT_SIZE * (1 - (cfg.FIRM_MAX_LOSS_PCT if firm else cfg.MAX_LOSS_STOP_PCT) / 100)
+
+    def target_equity(self) -> float:
+        return cfg.ACCOUNT_SIZE * (1 + cfg.PHASE_TARGET_PCT[cfg.PHASE] / 100)
+
+    def stop_at_target(self) -> bool:
+        return cfg.STOP_AT_TARGET and cfg.PHASE != "pro"
+
+    def prop_block(self, equity: float) -> str | None:
+        """Reason why no position may be open / no trade taken, or None."""
+        if equity <= self.max_floor():
+            return f"MAX LOSS STOP: equity {equity:,.0f} <= {self.max_floor():,.0f} (firm fails at {self.max_floor(True):,.0f})"
+        if equity <= self.daily_floor():
+            return (f"DAILY STOP: equity {equity:,.0f} <= {self.daily_floor():,.0f} "
+                    f"(day start {self.day.start_equity:,.0f}, firm limit {self.daily_floor(True):,.0f})")
+        if self.stop_at_target() and equity >= self.target_equity():
+            return f"TARGET REACHED: equity {equity:,.0f} >= {self.target_equity():,.0f} ({cfg.PHASE}). Trading stopped."
+        return None
 
     def ensure_range(self, now: datetime) -> bool:
         """Fixes today's range once all of it is known. Returns True when ready."""
@@ -340,6 +390,13 @@ class GoldBot:
         equity = self.equity()
         qty = self.size(ref, sl_ref, equity)
         side = "LONG" if long else "SHORT"
+        risk_usd = qty * abs(ref - sl_ref)
+        floor = max(self.daily_floor(), self.max_floor())
+        if equity - risk_usd * 1.2 < floor:      # 20% margin for slippage / gaps through the stop
+            log.info("BREAKOUT %s skipped: a full stop-out ($%.0f + 20%% slippage) would go below the prop stop "
+                     "%.0f (equity %.0f). No trade today.", side, risk_usd, floor, equity)
+            d.traded = True
+            return
         if qty < 1:
             log.info("BREAKOUT %s but size rounds to 0 shares. No trade today.", side)
             d.traded = True
@@ -447,6 +504,26 @@ class GoldBot:
             d.live_hi = q.mid if d.live_hi is None else max(d.live_hi, q.mid)
             d.live_lo = q.mid if d.live_lo is None else min(d.live_lo, q.mid)
             d.live_last = now
+
+        # prop firm stops: checked every 30 s, close everything when hit
+        if time.time() - self.last_prop >= 30:
+            self.last_prop = time.time()
+            eq = self.equity()
+            why = self.prop_block(eq)
+            if why:
+                if not d.halted:
+                    log.warning("%s Closing any position, no more trades %s.", why,
+                                "today" if why.startswith("DAILY") else "until you change the settings")
+                d.halted = d.traded = True
+                if qty:
+                    self.exit(qty, why.split(":")[0].lower(), q)
+                    return
+            elif cfg.PHASE == "pro" and "consistency" not in d.notes:
+                total, day = eq - cfg.ACCOUNT_SIZE, eq - d.start_equity
+                if total > 0 and day > 0 and day / total * 100 > cfg.CONSISTENCY_PCT:
+                    d.notes.add("consistency")
+                    log.warning("Consistency: today's profit %.0f is %.0f%% of total profit %.0f (> %.0f%%).",
+                                day, day / total * 100, total, cfg.CONSISTENCY_PCT)
 
         # equity guard (off by default, as in TradingView)
         if cfg.GUARD_ON and time.time() - self.last_guard >= 30:
