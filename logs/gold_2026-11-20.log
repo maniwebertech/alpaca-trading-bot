@@ -42,3 +42,12 @@
 2026-11-20 08:30:02 ET  INFO    Status | broker Fri 16:30 20261120 | phase trade | price 327.25 (delayed_sip-delayed, spread 0.00%) | range 322.32-335.41 | pos 0 | waiting | equity 100000
 2026-11-20 08:45:04 ET  INFO    Status | broker Fri 16:45 20261120 | phase trade | price 326.24 (delayed_sip-delayed, spread 0.00%) | range 322.32-335.41 | pos 0 | waiting | equity 100000
 2026-11-20 09:00:03 ET  INFO    Status | broker Fri 17:00 20261120 | phase trade | price 325.81 (delayed_sip-delayed, spread 0.00%) | range 322.32-335.41 | pos 0 | waiting | equity 100000
+2026-11-20 09:37:38 ET  INFO    === Gold Breakout bot | GLD | PAPER | ORDERS ON | data free | equity 100000 | for 5.83 h ===
+2026-11-20 09:37:38 ET  INFO    Range 00:00-07:00, close 20:00 broker time (Etc/GMT-3) | SL 1.0% of entry | risk $500 per trade | max leverage 1.9x | shorts on
+2026-11-20 09:37:38 ET  INFO    Prop | phase1 | day start equity 100000 | bot daily stop at 98500 (firm 97000) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-20 09:37:38 ET  INFO    Broker day 20261120 | range Thu 16:00-Thu 23:00 ET | trading until Fri 12:00 ET
+2026-11-20 09:37:38 ET  INFO    RANGE 20261120: high 335.41  low 322.32  width 13.09 (4.06%) | long above 335.41 (SL 332.06), short below 322.32 (SL 325.54)
+2026-11-20 09:37:38 ET  INFO    Spread 1.94% > 0.50%: waiting for a tighter market before any entry.
+2026-11-20 09:37:38 ET  INFO    Status | broker Fri 17:37 20261120 | phase trade | price 329.94 (iex, spread 1.94%) | range 322.32-335.41 | pos 0 | waiting | equity 100000
+2026-11-20 09:45:01 ET  INFO    Status | broker Fri 17:45 20261120 | phase trade | price 329.98 (iex, spread 1.92%) | range 322.32-335.41 | pos 0 | waiting | equity 100000
+2026-11-20 10:00:00 ET  INFO    Status | broker Fri 18:00 20261120 | phase trade | price 328.01 (iex, spread 0.05%) | range 322.32-335.41 | pos 0 | waiting | equity 100000
