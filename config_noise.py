@@ -13,7 +13,7 @@ FIRM_MAX_LOSS_PCT = 10.0         # firm: max total loss (10% -> account may not 
 PROFIT_TARGET_PCT = 8.0          # firm: target to pass (8% = $108,000)
 
 # ---- Bot safety limits (kept well inside the firm limits) ----
-RISK_PER_TRADE_PCT = 0.5         # $ lost if the stop loss is hit (0.5% = $500)
+RISK_PER_TRADE_USD = 500         # fixed $ lost if the stop loss is hit (never changes with equity)
 DAILY_STOP_PCT = 1.5             # bot stops for the day at -1.5% (half the firm's 3%)
 MAX_LOSS_STOP_PCT = 8.0          # bot stops completely at -8% (firm fails you at -10%)
 STOP_AT_TARGET = True            # stop trading once the profit target is reached

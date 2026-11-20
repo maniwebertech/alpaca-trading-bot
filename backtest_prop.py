@@ -132,7 +132,7 @@ def main():
     dd = (eq_curve - eq_curve.cummax().clip(lower=acct)).min()
     wins = t[t.pnl > 0]; losses = t[t.pnl <= 0]
     print(f"\n{args.symbol} {cfg.PRESET} | prop rules | {start.date()} to {end.date()} | {feed} 5-min data")
-    print(f"Risk {rules.risk_pct}%/trade (${rules.risk_usd:,.0f}) | daily stop {rules.daily_stop_pct}% | "
+    print(f"Risk ${rules.risk_usd:,.0f}/trade | daily stop {rules.daily_stop_pct}% | "
           f"max-loss stop {rules.max_loss_stop_pct}% | target {rules.target_pct}% "
           f"({'stops trading' if rules.stop_at_target else 'keeps trading'})\n")
     print(f"Final equity        ${equity:,.0f}  ({(equity / acct - 1) * 100:+.1f}%)")

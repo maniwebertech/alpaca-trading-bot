@@ -12,7 +12,7 @@ import config_noise as cfg
 @dataclass(frozen=True)
 class PropRules:
     account_size: float = cfg.ACCOUNT_SIZE
-    risk_pct: float = cfg.RISK_PER_TRADE_PCT
+    risk_per_trade_usd: float = cfg.RISK_PER_TRADE_USD
     daily_stop_pct: float = cfg.DAILY_STOP_PCT
     firm_daily_pct: float = cfg.FIRM_DAILY_LOSS_PCT
     max_loss_stop_pct: float = cfg.MAX_LOSS_STOP_PCT
@@ -23,7 +23,7 @@ class PropRules:
 
     @property
     def risk_usd(self) -> float:
-        return self.account_size * self.risk_pct / 100
+        return float(self.risk_per_trade_usd)
 
     def daily_stop_usd(self, start_of_day_equity: float) -> float:
         # Firms base the daily limit on the starting balance or the day's opening balance:
