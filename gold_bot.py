@@ -121,6 +121,13 @@ def is_overnight_session(t: datetime) -> bool:
     return et.hour >= 20 or et.hour < 4
 
 
+def is_weekend_gap(t: datetime) -> bool:
+    """Fri 20:00 ET -> Sun 19:30 ET: no GLD session at all (overnight trading resumes Sun 20:00 ET)."""
+    et = t.astimezone(NY)
+    wd, hm = et.weekday(), (et.hour, et.minute)
+    return wd == 5 or (wd == 4 and hm >= (20, 0)) or (wd == 6 and hm < (19, 30))
+
+
 @dataclass
 class Quote:
     bid: float
@@ -602,6 +609,10 @@ class GoldBot:
         end = time.time() + hours * 3600 if hours else None
         last_publish = datetime.now(NY).hour
         while end is None or time.time() < end:
+            if is_weekend_gap(datetime.now(UTC)) and not self.position()[0]:
+                log.info("Weekend: no GLD session until Sunday 20:00 ET. Stopping.")
+                publish_log()
+                break
             try:
                 self.step()
             except Exception:
@@ -650,6 +661,9 @@ def main():
     ap.add_argument("--check", action="store_true", help="show range / price / plan once, send nothing")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
+    if not args.check and is_weekend_gap(datetime.now(UTC)):
+        print("Weekend gap (Fri 20:00 - Sun 19:30 ET): nothing to trade. Exiting.")
+        return
     setup_logging()
     try:
         bot = GoldBot(dry_run=args.dry_run or args.check)
