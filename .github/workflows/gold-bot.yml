@@ -1,0 +1,68 @@
+name: Gold Breakout bot (GLD, 24/5)
+
+# Runs gold_bot.py on its own Alpaca paper account (secrets GOLD_ALPACA_API_KEY / GOLD_ALPACA_SECRET_KEY).
+# GitHub limits one job to 6 hours, so each run trades 5h50m and exits; the schedule starts the next one.
+# Only one run is active at a time (concurrency group). A new run rebuilds its state from Alpaca
+# (open position, its stop, today's trade, today's range), so a hand-over loses only a few minutes.
+#
+# NOTE: the stop loss is watched by the bot (Alpaca has no stop orders outside 9:30-16:00 ET),
+# so during a hand-over gap the stop is not watched for a few minutes.
+#
+# To turn the 24/5 schedule on: add the two secrets in GitHub -> Settings -> Secrets and variables
+# -> Actions, then remove the "#" in front of the two schedule lines below.
+# Running 24/5 uses ~520 GitHub Actions hours a month (free only for public repositories).
+
+on:
+  # schedule:
+  #   - cron: "*/10 * * * 0-5"     # Sun-Fri, every 10 min; the bot itself waits when nothing trades
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "What to run"
+        type: choice
+        default: check
+        options:
+          - check      # print range / price / plan once, never sends orders
+          - dry-run    # run 5h50m, log decisions only
+          - trade      # run 5h50m and trade
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gold-bot
+  cancel-in-progress: false
+
+env:
+  GOLD_ALPACA_API_KEY: ${{ secrets.GOLD_ALPACA_API_KEY }}
+  GOLD_ALPACA_SECRET_KEY: ${{ secrets.GOLD_ALPACA_SECRET_KEY }}
+  GOLD_ALPACA_PAPER: "true"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 358
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run gold bot
+        run: |
+          MODE="${{ github.event_name == 'schedule' && 'trade' || inputs.mode }}"
+          case "$MODE" in
+            check)   python gold_bot.py --check ;;
+            dry-run) python gold_bot.py --hours 5.83 --dry-run ;;
+            *)       python gold_bot.py --hours 5.83 ;;
+          esac
+      - name: Save logs
+        if: always()
+        run: |
+          git config user.name "trading-bot"
+          git config user.email "trading-bot@users.noreply.github.com"
+          git add logs/ 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m "Gold bot log $(TZ=America/New_York date '+%F %H:%M') ET"; git pull --rebase; git push; }

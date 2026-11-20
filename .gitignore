@@ -1,4 +1,5 @@
 .env
+.env.gold
 __pycache__/
 *.pyc
 bot.log
