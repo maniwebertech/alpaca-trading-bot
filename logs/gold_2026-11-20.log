@@ -77,3 +77,8 @@
 2026-11-20 16:00:00 ET  INFO    Broker day 20261121 | range Fri 16:00-Fri 23:00 ET | trading until Sat 12:00 ET
 2026-11-20 16:00:00 ET  INFO    Status | broker Sat 00:00 20261121 | phase range | price 323.70 (iex, spread 6.08%) | range - | pos 0 | waiting | equity 100000
 2026-11-20 16:00:21 ET  WARNING DAILY STOP: equity 100,000 <= 198,500 (day start 200,000, firm limit 197,000) Closing any position, no more trades today.
+2026-11-20 16:02:06 ET  INFO    Log uploaded to GitHub.
+2026-11-20 16:15:03 ET  INFO    Status | broker Sat 00:15 20261121 | phase range | price 322.71 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 100000
+2026-11-20 16:30:02 ET  INFO    Status | broker Sat 00:30 20261121 | phase range | price 322.38 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 100000
+2026-11-20 16:45:02 ET  INFO    Status | broker Sat 00:45 20261121 | phase range | price 322.82 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 100000
+2026-11-20 17:00:01 ET  INFO    Status | broker Sat 01:00 20261121 | phase range | price 323.07 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 100000
