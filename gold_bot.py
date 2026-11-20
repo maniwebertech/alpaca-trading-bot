@@ -325,6 +325,8 @@ class GoldBot:
         risk = abs(entry_ref - sl)
         if cfg.SIZE_MODE == "fixed":
             raw = cfg.FIXED_QTY
+        elif cfg.SIZE_MODE == "risk_usd":
+            raw = cfg.RISK_PER_TRADE_USD / risk if risk > 0 else 0
         else:
             raw = equity * cfg.RISK_PCT / 100 / risk if risk > 0 else 0
         cap = equity * cfg.MAX_LEVERAGE / entry_ref
@@ -517,6 +519,7 @@ class GoldBot:
                  cfg.RANGE_START_HOUR, cfg.RANGE_END_HOUR, cfg.CLOSE_HOUR,
                  "NY+7h" if cfg.BROKER_TIME_MODE == "ny7" else cfg.BROKER_TZ,
                  f"{cfg.SL_PCT}% of entry" if cfg.SL_MODE == "pct" else "range boundary",
+                 f"${cfg.RISK_PER_TRADE_USD:.0f} per trade" if cfg.SIZE_MODE == "risk_usd" else
                  f"{cfg.RISK_PCT}% of equity" if cfg.SIZE_MODE == "risk_pct" else f"{cfg.FIXED_QTY} shares",
                  cfg.MAX_LEVERAGE, "on" if cfg.ALLOW_SHORT else "off")
         end = time.time() + hours * 3600 if hours else None

@@ -25,7 +25,9 @@ CLOSE_HOUR = 20                  # any open position is closed
 # ---- Risk ----
 SL_MODE = "pct"                  # "pct" = SL_PCT % of entry, "range" = opposite range boundary
 SL_PCT = 1.0
-SIZE_MODE = "risk_pct"           # "risk_pct" = equity x RISK_PCT % lost at the stop, "fixed" = FIXED_QTY shares
+SIZE_MODE = "risk_usd"           # "risk_usd" = RISK_PER_TRADE_USD lost at the stop (always the same $),
+                                 # "risk_pct" = equity x RISK_PCT %, "fixed" = FIXED_QTY shares
+RISK_PER_TRADE_USD = 500         # fixed $ lost if the stop loss is hit (never changes with equity)
 RISK_PCT = 1.0
 FIXED_QTY = 10
 MAX_LEVERAGE = 2.0               # position value / equity cap. Alpaca allows max 2x in the overnight session
