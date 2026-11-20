@@ -12,3 +12,23 @@
 2026-11-20 13:00:20 ET  INFO    Bar 12:55 close=621.51 | band 653.90 / 629.77 | VWAP 629.96 | 20d SMA 683.37 | pos -1 | day P&L +1382 | equity 101844 | CHECK
 2026-11-20 13:00:20 ET  INFO    Check 13:00: no signal.
 2026-11-20 13:02:01 ET  INFO    HOURLY REPORT | equity 101845 | day P&L +1383 (+1.38%) | position -1 | fills today 9 | daily stop room $2883
+2026-11-20 13:02:03 ET  INFO    Log uploaded to GitHub.
+2026-11-20 13:05:24 ET  INFO    Bar 13:00 close=619.99 | band 654.28 / 629.39 | VWAP 629.83 | 20d SMA 683.37 | pos -1 | day P&L +1383 | equity 101845
+2026-11-20 13:10:20 ET  INFO    Bar 13:05 close=620.36 | band 654.14 / 629.52 | VWAP 629.78 | 20d SMA 683.37 | pos -1 | day P&L +1383 | equity 101845
+2026-11-20 13:15:22 ET  INFO    Bar 13:10 close=619.55 | band 654.34 / 629.33 | VWAP 629.66 | 20d SMA 683.37 | pos 0 | day P&L +1383 | equity 101845
+2026-11-20 13:20:23 ET  INFO    Bar 13:15 close=621.85 | band 654.32 / 629.35 | VWAP 629.59 | 20d SMA 683.37 | pos 0 | day P&L +1383 | equity 101845
+2026-11-20 13:25:25 ET  INFO    Bar 13:20 close=622.25 | band 654.15 / 629.52 | VWAP 629.52 | 20d SMA 683.37 | pos 0 | day P&L +1383 | equity 101845
+2026-11-20 13:30:21 ET  INFO    Bar 13:25 close=620.37 | band 653.80 / 629.86 | VWAP 629.38 | 20d SMA 683.37 | pos 0 | day P&L +1383 | equity 101845 | CHECK
+2026-11-20 13:30:21 ET  INFO    SIGNAL SHORT (close below lower band) at close 620.37: 196 shares = $498 risk at the stop ($121,593 position) | TP +1.35 / SL -2.54 from the fill price
+2026-11-20 13:30:22 ET  INFO    ENTRY SENT: SELL 196 QQQ market | id 67fddbd7-d3a1-4525-adb4-595311b751bc
+2026-11-20 13:30:23 ET  INFO    FILLED SELL 196 QQQ @ 620.00 (signal close 620.37, diff -0.37) | TP 618.65  SL 622.54 | risk $498  reward $265 | exit id 9b6750dd-e5fd-45f6-8a0a-1789c06d4fde
+2026-11-20 13:35:24 ET  INFO    Bar 13:30 close=622.04 | band 653.86 / 629.80 | VWAP 629.28 | 20d SMA 683.37 | pos 0 | day P&L +809 | equity 101271
+2026-11-20 13:40:21 ET  INFO    Bar 13:35 close=621.97 | band 653.85 / 629.81 | VWAP 629.18 | 20d SMA 683.37 | pos 0 | day P&L +809 | equity 101271
+2026-11-20 13:45:22 ET  INFO    Bar 13:40 close=620.16 | band 653.97 / 629.70 | VWAP 629.09 | 20d SMA 683.37 | pos 0 | day P&L +809 | equity 101271
+2026-11-20 13:50:24 ET  INFO    Bar 13:45 close=620.41 | band 653.86 / 629.81 | VWAP 629.00 | 20d SMA 683.37 | pos 0 | day P&L +809 | equity 101271
+2026-11-20 13:55:20 ET  INFO    Bar 13:50 close=623.09 | band 653.60 / 630.07 | VWAP 628.90 | 20d SMA 683.37 | pos 0 | day P&L +809 | equity 101271
+2026-11-20 14:00:22 ET  INFO    Bar 13:55 close=621.92 | band 653.59 / 630.08 | VWAP 628.71 | 20d SMA 683.37 | pos 0 | day P&L +809 | equity 101271 | CHECK
+2026-11-20 14:00:22 ET  INFO    SIGNAL SHORT (close below lower band) at close 621.92: 196 shares = $498 risk at the stop ($121,896 position) | TP +1.35 / SL -2.54 from the fill price
+2026-11-20 14:00:22 ET  INFO    ENTRY SENT: SELL 196 QQQ market | id 3432f4d9-44a4-4283-9865-8100ca3b5387
+2026-11-20 14:00:23 ET  INFO    FILLED SELL 196 QQQ @ 621.88 (signal close 621.92, diff -0.04) | TP 620.53  SL 624.42 | risk $498  reward $265 | exit id 1c90ecec-b715-47a2-9cd1-5126897c3345
+2026-11-20 14:02:04 ET  INFO    HOURLY REPORT | equity 101301 | day P&L +839 (+0.83%) | position -196 | fills today 13 | daily stop room $2339
