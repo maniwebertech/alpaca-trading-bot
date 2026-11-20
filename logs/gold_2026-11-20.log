@@ -66,3 +66,14 @@
 2026-11-20 12:30:03 ET  INFO    Status | broker Fri 20:30 20261120 | phase closed | price 323.26 (iex, spread 0.03%) | range 322.32-335.41 | pos 0 | waiting | equity 100000
 2026-11-20 12:45:03 ET  INFO    Status | broker Fri 20:45 20261120 | phase closed | price 324.24 (iex, spread 0.80%) | range 322.32-335.41 | pos 0 | waiting | equity 100000
 2026-11-20 13:00:00 ET  INFO    Status | broker Fri 21:00 20261120 | phase closed | price 323.38 (iex, spread 0.01%) | range 322.32-335.41 | pos 0 | waiting | equity 100000
+2026-11-20 15:27:51 ET  INFO    === Gold Breakout bot | GLD | PAPER | ORDERS ON | data free | equity 100000 | for 5.83 h ===
+2026-11-20 15:27:51 ET  INFO    Range 00:00-07:00, close 20:00 broker time (Etc/GMT-3) | SL 1.0% of entry | risk $500 per trade | max leverage 1.9x | shorts on
+2026-11-20 15:27:52 ET  INFO    Prop | phase1 | day start equity 100000 | bot daily stop at 98500 (firm 97000) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-20 15:27:52 ET  INFO    Broker day 20261120 | range Thu 16:00-Thu 23:00 ET | trading until Fri 12:00 ET
+2026-11-20 15:27:52 ET  INFO    Status | broker Fri 23:27 20261120 | phase closed | price 322.25 (iex, spread 0.01%) | range - | pos 0 | waiting | equity 100000
+2026-11-20 15:30:01 ET  INFO    Status | broker Fri 23:30 20261120 | phase closed | price 324.34 (iex, spread 1.48%) | range - | pos 0 | waiting | equity 100000
+2026-11-20 15:45:03 ET  INFO    Status | broker Fri 23:45 20261120 | phase closed | price 321.25 (iex, spread 0.01%) | range - | pos 0 | waiting | equity 100000
+2026-11-20 16:00:00 ET  INFO    Prop | phase1 | day start equity 200000 | bot daily stop at 198500 (firm 197000) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-20 16:00:00 ET  INFO    Broker day 20261121 | range Fri 16:00-Fri 23:00 ET | trading until Sat 12:00 ET
+2026-11-20 16:00:00 ET  INFO    Status | broker Sat 00:00 20261121 | phase range | price 323.70 (iex, spread 6.08%) | range - | pos 0 | waiting | equity 100000
+2026-11-20 16:00:21 ET  WARNING DAILY STOP: equity 100,000 <= 198,500 (day start 200,000, firm limit 197,000) Closing any position, no more trades today.
