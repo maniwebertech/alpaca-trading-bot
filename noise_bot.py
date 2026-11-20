@@ -32,7 +32,8 @@ from alpaca.data.requests import StockBarsRequest
 from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 from alpaca.trading.client import TradingClient
 from alpaca.trading.enums import OrderClass, OrderSide, QueryOrderStatus, TimeInForce
-from alpaca.trading.requests import GetOrdersRequest, MarketOrderRequest, StopLossRequest, TakeProfitRequest
+from alpaca.trading.requests import (GetOrdersRequest, LimitOrderRequest, MarketOrderRequest, StopLossRequest,
+                                     TakeProfitRequest)
 from dotenv import load_dotenv
 
 import config_noise as cfg
@@ -126,6 +127,8 @@ class Bot:
         now = datetime.now(NY)
         today_start = now.replace(hour=9, minute=30, second=0, microsecond=0)
         today = self.bars(today_start, now) if now >= today_start else self.history.iloc[0:0]
+        if today.empty:                     # right after 9:30 no bar has finished yet: nothing new
+            return self.history
         today = today[today.index + timedelta(minutes=5) <= now - timedelta(seconds=5)]  # finished bars only
         return pd.concat([self.history, today])
 
@@ -220,26 +223,65 @@ class Bot:
             return
         side = OrderSide.BUY if d.action == "long" else OrderSide.SELL
         sgn = 1 if d.action == "long" else -1
-        tp = round(r.close + sgn * d.tp_dist, 2)
-        sl = round(r.close - sgn * d.sl_dist, 2)
         check_time = (r.Index + timedelta(minutes=5)).strftime("%Y%m%d-%H%M")
-        log.info("SIGNAL %s (%s): %s | TP %.2f (+%.2f) SL %.2f (-%.2f)",
-                 d.action.upper(), d.reason, why, tp, d.tp_dist, sl, d.sl_dist)
+        log.info("SIGNAL %s (%s) at close %.2f: %s | TP +%.2f / SL -%.2f from the fill price",
+                 d.action.upper(), d.reason, r.close, why, d.tp_dist, d.sl_dist)
         if self.dry:
             log.info("DRY RUN: order not sent.")
             return
+
+        # 1. entry: plain market order
+        cid = f"nb-{self.sym}-{check_time}"
         try:
             o = self.trade.submit_order(MarketOrderRequest(
-                symbol=self.sym, qty=qty, side=side, time_in_force=TimeInForce.DAY,
-                order_class=OrderClass.BRACKET,
-                take_profit=TakeProfitRequest(limit_price=tp), stop_loss=StopLossRequest(stop_price=sl),
-                client_order_id=f"nb-{self.sym}-{check_time}"))
-            log.info("ORDER SENT: %s %d %s bracket | id %s | status %s", side.value.upper(), qty, self.sym, o.id, o.status)
+                symbol=self.sym, qty=qty, side=side, time_in_force=TimeInForce.DAY, client_order_id=cid))
         except Exception as exc:
             if "client_order_id" in str(exc).lower():
                 log.info("Order for this check was already sent by another run. Skipping.")
             else:
-                log.error("Order failed: %s", exc)
+                log.error("Entry order failed: %s", exc)
+            return
+        log.info("ENTRY SENT: %s %d %s market | id %s", side.value.upper(), qty, self.sym, o.id)
+
+        # 2. wait for the fill (market orders normally fill in under a second)
+        fill_px, filled = None, 0
+        for _ in range(60):
+            o = self.trade.get_order_by_id(o.id)
+            filled = int(float(o.filled_qty or 0))
+            if o.status.value == "filled":
+                fill_px = float(o.filled_avg_price)
+                break
+            if o.status.value in ("canceled", "expired", "rejected"):
+                break
+            time.sleep(0.5)
+        if fill_px is None:
+            log.error("Entry not filled after 30 s (status %s, filled %d). Cancelling and closing any part fill.",
+                      o.status.value, filled)
+            try:
+                self.trade.cancel_order_by_id(o.id)
+            except Exception:
+                pass
+            self.flatten("entry did not fill")
+            return
+
+        # 3. protection: take profit + stop loss measured from the ACTUAL fill (as TradingView does)
+        tp = round(fill_px + sgn * d.tp_dist, 2)
+        sl = round(fill_px - sgn * d.sl_dist, 2)
+        exit_side = OrderSide.SELL if sgn > 0 else OrderSide.BUY
+        try:
+            x = self.trade.submit_order(LimitOrderRequest(
+                symbol=self.sym, qty=filled, side=exit_side, time_in_force=TimeInForce.DAY,
+                order_class=OrderClass.OCO, limit_price=tp,
+                take_profit=TakeProfitRequest(limit_price=tp), stop_loss=StopLossRequest(stop_price=sl),
+                client_order_id=f"{cid}-exit"))
+        except Exception as exc:
+            log.error("Could not place take profit / stop loss (%s). Closing the position for safety.", exc)
+            self.flatten("protective orders rejected")
+            return
+        log.info("FILLED %s %d %s @ %.2f (signal close %.2f, diff %+.2f) | TP %.2f  SL %.2f | "
+                 "risk $%.0f  reward $%.0f | exit id %s",
+                 side.value.upper(), filled, self.sym, fill_px, r.close, fill_px - r.close, tp, sl,
+                 filled * d.sl_dist, filled * d.tp_dist, x.id)
 
     # ---------------------------------------------------------------- report
     def hourly_report(self):
