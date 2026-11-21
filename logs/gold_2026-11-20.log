@@ -97,3 +97,5 @@
 2026-11-20 19:30:04 ET  INFO    Status | broker Sat 03:30 20261121 | phase range | price 324.35 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 100000
 2026-11-20 19:45:02 ET  INFO    Status | broker Sat 03:45 20261121 | phase range | price 324.08 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 100000
 2026-11-20 20:00:00 ET  INFO    Weekend: no GLD session until Sunday 20:00 ET. Stopping.
+2026-11-20 20:00:01 ET  INFO    Log uploaded to GitHub.
+2026-11-20 20:00:01 ET  INFO    === Run finished (position 0). The next run takes over. ===
