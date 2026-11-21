@@ -13,7 +13,7 @@ name: Gold Breakout bot (GLD, 24/5)
 # Running 24/5 uses ~520 GitHub Actions hours a month (free only for public repositories).
 
 on:
-  # Started by cron-job.org (job "Start gold bot": Sun-Fri every 1 min, New York time, POST .../gold-bot.yml/dispatches,
+  # Started by cron-job.org (job "Start gold bot": Mon-Fri every 1 min, New York time, POST .../gold-bot.yml/dispatches,
   # body {"ref":"main","inputs":{"mode":"trade"}}). Runs in the weekend gap exit at once.
   # schedule:
   #   - cron: "*/10 * * * 0-5"     # Sun-Fri, every 10 min; the bot itself waits when nothing trades

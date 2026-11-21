@@ -63,6 +63,20 @@ def setup_logging():
     logging.basicConfig(level=logging.INFO, handlers=handlers)
 
 
+def reopen_log_files():
+    """git pull --rebase rewrites the log file on disk. Reopen it, otherwise every later line goes to the old,
+    deleted file and never reaches GitHub."""
+    for h in logging.getLogger().handlers:
+        if isinstance(h, logging.FileHandler):
+            h.acquire()
+            try:
+                if h.stream:
+                    h.stream.close()
+                h.stream = h._open()
+            finally:
+                h.release()
+
+
 def publish_log():
     """On GitHub Actions: commit the logs folder and push, so the log can be read during the day.
     Does nothing on your PC. Never stops the bot if it fails."""
@@ -77,6 +91,14 @@ def publish_log():
         ["git", "pull", "-q", "--rebase", "--autostash"],
         ["git", "push", "-q"],
     ]
+    try:
+        _run_git(cmds)
+    finally:
+        reopen_log_files()
+
+
+def _run_git(cmds):
+    import subprocess
     for c in cmds:
         r = subprocess.run(c, cwd=BASE, capture_output=True, text=True, timeout=60)
         if r.returncode != 0 and c[1] == "commit":

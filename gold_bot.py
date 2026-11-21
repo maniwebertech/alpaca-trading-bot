@@ -65,6 +65,20 @@ def setup_logging():
     logging.basicConfig(level=logging.INFO, handlers=handlers)
 
 
+def reopen_log_files():
+    """git pull --rebase rewrites the log file on disk. Reopen it, otherwise every later line goes to the old,
+    deleted file and never reaches GitHub."""
+    for h in logging.getLogger().handlers:
+        if isinstance(h, logging.FileHandler):
+            h.acquire()
+            try:
+                if h.stream:
+                    h.stream.close()
+                h.stream = h._open()
+            finally:
+                h.release()
+
+
 def publish_log():
     """On GitHub Actions: commit the logs folder and push. Does nothing on your PC."""
     if os.getenv("GITHUB_ACTIONS") != "true":
@@ -78,6 +92,14 @@ def publish_log():
         ["git", "pull", "-q", "--rebase", "--autostash"],
         ["git", "push", "-q"],
     ]
+    try:
+        _run_git(cmds)
+    finally:
+        reopen_log_files()
+
+
+def _run_git(cmds):
+    import subprocess
     for c in cmds:
         r = subprocess.run(c, cwd=BASE, capture_output=True, text=True, timeout=60)
         if r.returncode != 0 and c[1] == "commit":
@@ -303,17 +325,31 @@ class GoldBot:
     def day_start_equity(self, d: Day) -> float:
         """Account equity at broker midnight (start of the prop firm's trading day)."""
         midnight = from_broker(d.date)
+        eq = self.equity()
+        qty, _ = self.position()
+        # Flat and nothing filled since midnight: today's P&L is zero, so the equity now IS the day start.
+        try:
+            fills = [o for o in self.trade.get_orders(GetOrdersRequest(
+                status=QueryOrderStatus.CLOSED, symbols=[self.sym], after=midnight, limit=50)) if o.filled_at]
+        except Exception:
+            fills = None
+        if not qty and fills == []:
+            return eq
+        # Otherwise read it from the portfolio history, but never trust an implausible value
+        # (Alpaca's paper history once returned 200,000 for a 100,000 account).
         try:
             h = self.trade.get_portfolio_history(GetPortfolioHistoryRequest(
                 timeframe="15Min", start=midnight - timedelta(hours=3), end=midnight + timedelta(minutes=1),
                 extended_hours=True, intraday_reporting="continuous"))
-            pts = [(t, e) for t, e in zip(h.timestamp or [], h.equity or []) if e]
-            before = [e for t, e in pts if t <= midnight.timestamp()]
-            if before:
+            before = [e for t, e in zip(h.timestamp or [], h.equity or []) if e and t <= midnight.timestamp()]
+            if before and abs(before[-1] - eq) <= 0.2 * eq:
                 return float(before[-1])
+            if before:
+                log.warning("Portfolio history day start %.0f is implausible vs equity %.0f; using current equity.",
+                            before[-1], eq)
         except Exception as exc:
             log.warning("Could not read portfolio history (%s); using current equity as the day start.", str(exc)[:120])
-        return self.equity()
+        return eq
 
     def daily_floor(self, firm: bool = False) -> float:
         pct = cfg.FIRM_DAILY_LOSS_PCT if firm else cfg.DAILY_STOP_PCT
