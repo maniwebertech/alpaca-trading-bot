@@ -67,3 +67,8 @@
 2026-11-23 10:30:03 ET  INFO    Status | broker Mon 18:30 20261123 | phase trade | price 342.60 (iex, spread 3.23%) | range - | pos 150 stop 328.94 | done today | equity 100723
 2026-11-23 10:45:00 ET  INFO    Status | broker Mon 18:45 20261123 | phase trade | price 336.27 (iex, spread 0.03%) | range - | pos 150 stop 328.94 | done today | equity 100604
 2026-11-23 11:00:03 ET  INFO    Status | broker Mon 19:00 20261123 | phase trade | price 336.10 (iex, spread 0.03%) | range - | pos 150 stop 328.94 | done today | equity 100584
+2026-11-23 11:15:01 ET  INFO    Status | broker Mon 19:15 20261123 | phase trade | price 335.88 (iex, spread 0.48%) | range - | pos 150 stop 328.94 | done today | equity 100597
+2026-11-23 11:30:04 ET  INFO    Status | broker Mon 19:30 20261123 | phase trade | price 336.67 (iex, spread 0.15%) | range - | pos 150 stop 328.94 | done today | equity 100650
+2026-11-23 11:45:00 ET  INFO    Status | broker Mon 19:45 20261123 | phase trade | price 335.29 (iex, spread 0.13%) | range - | pos 150 stop 328.94 | done today | equity 100488
+2026-11-23 12:00:06 ET  INFO    CLOSED 150 GLD @ 336.48 (time exit 20:00 broker time, market)
+2026-11-23 12:00:06 ET  INFO    Status | broker Mon 20:00 20261123 | phase closed | price 335.97 (iex, spread 0.57%) | range - | pos 150 | done today | equity 100634
