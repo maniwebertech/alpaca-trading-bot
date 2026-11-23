@@ -1,0 +1,10 @@
+2026-11-23 00:00:39 ET  INFO    === Gold Breakout bot | GLD | PAPER | ORDERS ON | data free | equity 100000 | for 5.83 h ===
+2026-11-23 00:00:39 ET  INFO    Range 00:00-07:00, close 20:00 broker time (Etc/GMT-3) | SL 1.0% of entry | risk $500 per trade | max leverage 1.9x | shorts on
+2026-11-23 00:00:39 ET  INFO    Prop | phase1 | day start equity 100000 | bot daily stop at 98500 (firm 97000) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-23 00:00:39 ET  INFO    Broker day 20261123 | range Sun 16:00-Sun 23:00 ET | trading until Mon 12:00 ET
+2026-11-23 00:00:40 ET  INFO    RANGE 20261123: high 332.39  low 326.21  width 6.18 (1.89%) | long above 332.39 (SL 329.07), short below 326.21 (SL 329.47)
+2026-11-23 00:00:40 ET  INFO    Status | broker Mon 08:00 20261123 | phase trade | price 330.54 (overnight, spread 0.02%) | range 326.21-332.39 | pos 0 | waiting | equity 100000
+2026-11-23 00:15:00 ET  INFO    Status | broker Mon 08:15 20261123 | phase trade | price 330.87 (overnight, spread 0.00%) | range 326.21-332.39 | pos 0 | waiting | equity 100000
+2026-11-23 00:30:03 ET  INFO    Status | broker Mon 08:30 20261123 | phase trade | price 332.04 (overnight, spread 0.10%) | range 326.21-332.39 | pos 0 | waiting | equity 100000
+2026-11-23 00:45:04 ET  INFO    Status | broker Mon 08:45 20261123 | phase trade | price 332.11 (overnight, spread 0.06%) | range 326.21-332.39 | pos 0 | waiting | equity 100000
+2026-11-23 01:00:01 ET  INFO    Status | broker Mon 09:00 20261123 | phase trade | price 331.44 (overnight, spread 0.09%) | range 326.21-332.39 | pos 0 | waiting | equity 100000
