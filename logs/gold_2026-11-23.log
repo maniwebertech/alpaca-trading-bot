@@ -58,3 +58,7 @@
 2026-11-23 08:30:02 ET  INFO    Status | broker Mon 16:30 20261123 | phase trade | price 331.80 (delayed_sip-delayed, spread 0.00%) | range - | pos 150 stop 328.94 | done today | equity 100008
 2026-11-23 08:45:03 ET  INFO    Status | broker Mon 16:45 20261123 | phase trade | price 332.31 (delayed_sip-delayed, spread 0.00%) | range - | pos 150 stop 328.94 | done today | equity 99886
 2026-11-23 09:00:02 ET  INFO    Status | broker Mon 17:00 20261123 | phase trade | price 334.73 (iex, spread 0.17%) | range - | pos 150 stop 328.94 | done today | equity 100369
+2026-11-23 09:15:04 ET  INFO    Status | broker Mon 17:15 20261123 | phase trade | price 334.72 (delayed_sip-delayed, spread 0.00%) | range - | pos 150 stop 328.94 | done today | equity 100548
+2026-11-23 09:30:03 ET  INFO    Status | broker Mon 17:30 20261123 | phase trade | price 342.92 (iex, spread 3.04%) | range - | pos 150 stop 328.94 | done today | equity 100826
+2026-11-23 09:45:04 ET  INFO    Status | broker Mon 17:45 20261123 | phase trade | price 331.86 (iex, spread 2.44%) | range - | pos 150 stop 328.94 | done today | equity 100530
+2026-11-23 10:00:01 ET  INFO    Status | broker Mon 18:00 20261123 | phase trade | price 335.80 (iex, spread 0.14%) | range - | pos 150 stop 328.94 | done today | equity 100560
