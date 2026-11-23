@@ -2,21 +2,19 @@ name: Gold Breakout bot (GLD, 24/5)
 
 # Runs gold_bot.py on its own Alpaca paper account (secrets GOLD_ALPACA_API_KEY / GOLD_ALPACA_SECRET_KEY).
 # GitHub limits one job to 6 hours, so each run trades 5h50m and exits; the schedule starts the next one.
-# Only one run is active at a time (concurrency group). A new run rebuilds its state from Alpaca
-# (open position, its stop, today's trade, today's range), so a hand-over loses only a few minutes.
+# Only one run trades at a time, enforced by a HEARTBEAT LOCK in gold_bot.py (not by a GitHub concurrency
+# group): the active run refreshes a heartbeat every 30 s; the run cron starts every minute exits within
+# seconds while the heartbeat is fresh, and takes over when it is older than 90 s. So when GitHub loses a
+# runner (happened 2026-11-23: 70 min unwatched while GitHub waited to declare the dead run failed),
+# the bot is back within ~2 minutes. A new run rebuilds its state from Alpaca (position, stop, today's trade).
 #
-# NOTE: the stop loss is watched by the bot (Alpaca has no stop orders outside 9:30-16:00 ET),
-# so during a hand-over gap the stop is not watched for a few minutes.
-#
-# To turn the 24/5 schedule on: add the two secrets in GitHub -> Settings -> Secrets and variables
-# -> Actions, then remove the "#" in front of the two schedule lines below.
-# Running 24/5 uses ~520 GitHub Actions hours a month (free only for public repositories).
+# NOTE: the stop loss is watched by the bot (Alpaca has no stop orders outside 9:30-16:00 ET).
+# Public repository: GitHub Actions minutes are free.
 
 on:
-  # Started by cron-job.org (job "Start gold bot": Sun 18:00 ET (Asian open) to Fri 17:00 ET (NY close), every 1 min, POST .../gold-bot.yml/dispatches,
-  # body {"ref":"main","inputs":{"mode":"trade"}}). Runs in the weekend gap exit at once.
-  # schedule:
-  #   - cron: "*/10 * * * 0-5"     # Sun-Fri, every 10 min; the bot itself waits when nothing trades
+  # Started every minute by 3 cron-job.org jobs (Sun 18:00 ET Asian open -> Fri 17:00 ET NY close):
+  #   "Gold bot - Sun from Asian open 18:00", "Gold bot - Mon-Thu all day", "Gold bot - Fri until NY close 17:00"
+  #   POST .../gold-bot.yml/dispatches  body {"ref":"main","inputs":{"mode":"trade"}}
   workflow_dispatch:
     inputs:
       mode:
@@ -30,10 +28,6 @@ on:
 
 permissions:
   contents: write
-
-concurrency:
-  group: gold-bot
-  cancel-in-progress: false
 
 env:
   GOLD_ALPACA_API_KEY: ${{ secrets.GOLD_ALPACA_API_KEY }}

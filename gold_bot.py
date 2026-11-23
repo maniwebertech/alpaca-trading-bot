@@ -37,8 +37,8 @@ from alpaca.data.requests import StockBarsRequest, StockLatestQuoteRequest, Stoc
 from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 from alpaca.trading.client import TradingClient
 from alpaca.trading.enums import OrderSide, QueryOrderStatus, TimeInForce
-from alpaca.trading.requests import (GetOrdersRequest, GetPortfolioHistoryRequest, LimitOrderRequest,
-                                     MarketOrderRequest)
+from alpaca.trading.requests import (CreateWatchlistRequest, GetOrdersRequest, GetPortfolioHistoryRequest,
+                                     LimitOrderRequest, MarketOrderRequest, UpdateWatchlistRequest)
 from dotenv import load_dotenv
 
 import config_gold as cfg
@@ -50,6 +50,10 @@ DELAY = timedelta(minutes=16)      # free plan: historical SIP / BOATS data must
 MAX_ENTRY_TRIES = 3                # entry limit orders that did not fill before the day is given up
 
 log = logging.getLogger("gold_bot")
+
+LOCK_PREFIX = "gold-bot-lock "        # Alpaca watchlist used as a heartbeat lock: "gold-bot-lock <owner> <epoch>"
+LOCK_STALE_SEC = 90                   # heartbeat older than this = the owner died, another run takes over
+LOCK_BEAT_SEC = 30
 
 
 # ---------------------------------------------------------------------- logging
@@ -191,6 +195,74 @@ class Day:
     @property
     def range_end(self) -> datetime:
         return from_broker(self.date + timedelta(hours=cfg.RANGE_END_HOUR))
+
+
+class Lock:
+    """Only one bot may trade the account. The owner refreshes a heartbeat (an Alpaca watchlist name) every 30 s.
+    A new run (started every minute by cron) exits at once while the heartbeat is fresh, and takes over when it is
+    older than 90 s, so a crashed GitHub runner is replaced within ~2 minutes."""
+
+    def __init__(self, trade: TradingClient):
+        self.trade = trade
+        self.me = os.getenv("GITHUB_RUN_ID") or f"{os.getenv('COMPUTERNAME') or os.getenv('HOSTNAME') or 'pc'}-{os.getpid()}"
+        self.wl_id = None
+        self.last_beat = 0.0
+
+    def _read(self) -> tuple[str | None, float]:
+        for w in self.trade.get_watchlists():
+            if w.name.startswith(LOCK_PREFIX):
+                self.wl_id = w.id
+                parts = w.name.split()
+                try:
+                    return parts[1], float(parts[2])
+                except (IndexError, ValueError):
+                    return None, 0.0
+        return None, 0.0
+
+    def _write(self, owner: str, ts: float):
+        name = f"{LOCK_PREFIX}{owner} {int(ts)}"
+        if self.wl_id is None:
+            self._read()
+        if self.wl_id is None:
+            self.wl_id = self.trade.create_watchlist(CreateWatchlistRequest(name=name, symbols=[])).id
+        else:
+            self.trade.update_watchlist_by_id(self.wl_id, UpdateWatchlistRequest(name=name))
+
+    def holder(self) -> tuple[str | None, float]:
+        """(owner, age in seconds) of the current heartbeat."""
+        owner, ts = self._read()
+        return owner, time.time() - ts
+
+    def acquire(self) -> bool:
+        owner, age = self.holder()
+        if owner and owner != self.me and age < LOCK_STALE_SEC:
+            return False
+        self._write(self.me, time.time())
+        time.sleep(3)                                  # two runs racing: the last writer wins, the other backs off
+        owner, _ = self.holder()
+        if owner != self.me:
+            return False
+        self.last_beat = time.time()
+        return True
+
+    def beat(self) -> bool:
+        """Refresh the heartbeat. False = another run took over (we stalled): stop at once."""
+        if time.time() - self.last_beat < LOCK_BEAT_SEC:
+            return True
+        owner, _ = self.holder()
+        if owner != self.me:
+            return False
+        self._write(self.me, time.time())
+        self.last_beat = time.time()
+        return True
+
+    def release(self):
+        try:
+            owner, _ = self.holder()
+            if owner == self.me:
+                self._write("free", 0)                 # next run takes over immediately
+        except Exception as exc:
+            log.warning("Could not release the lock: %s", exc)
 
 
 class GoldBot:
@@ -630,7 +702,7 @@ class GoldBot:
                  f" stop {self.sl:.2f}" if qty and self.sl else "",
                  "done today" if d.traded else "waiting", eq)
 
-    def run(self, hours: float | None):
+    def run(self, hours: float | None, lock: "Lock | None" = None):
         a = self.trade.get_account()
         log.info("=== Gold Breakout bot | %s | %s | %s | data %s | equity %.0f | %s ===", self.sym,
                  "PAPER" if self.paper else "LIVE", "DRY RUN" if self.dry else "ORDERS ON", cfg.DATA_PLAN,
@@ -649,6 +721,13 @@ class GoldBot:
                 log.info("Weekend: New York closed (Fri 17:00 ET). Bot restarts at the Asian open, Sunday 18:00 ET.")
                 publish_log()
                 break
+            if lock is not None:
+                try:
+                    if not lock.beat():
+                        log.warning("Another run has taken over this account (this run stalled). Stopping.")
+                        return
+                except Exception as exc:
+                    log.warning("Heartbeat failed: %s", str(exc)[:150])
             try:
                 self.step()
             except Exception:
@@ -700,18 +779,32 @@ def main():
     if not args.check and is_weekend_gap(datetime.now(UTC)):
         print("Weekend (Fri 17:00 ET NY close - Sun 18:00 ET Asian open): bot off. Exiting.")
         return
+    lock = None
+    if not args.check and not args.dry_run:
+        bot = GoldBot(dry_run=False)
+        lock = Lock(bot.trade)
+        if not lock.acquire():
+            owner, age = lock.holder()
+            print(f"Another gold bot run ({owner}) is active, heartbeat {age:.0f} s ago. Exiting.")
+            return
     setup_logging()
     try:
-        bot = GoldBot(dry_run=args.dry_run or args.check)
+        if lock is None:
+            bot = GoldBot(dry_run=args.dry_run or args.check)
         if args.check:
             bot.check()
         else:
-            bot.run(args.hours)
+            log.info("Lock taken by %s (heartbeat every %d s, takeover after %d s).", lock.me if lock else "-",
+                     LOCK_BEAT_SEC, LOCK_STALE_SEC) if lock else None
+            bot.run(args.hours, lock)
     except KeyboardInterrupt:
         log.info("Stopped by user.")
     except Exception:
         log.exception("Bot stopped with an error:")
         sys.exit(1)
+    finally:
+        if lock is not None:
+            lock.release()
 
 
 if __name__ == "__main__":
