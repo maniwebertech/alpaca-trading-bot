@@ -72,3 +72,6 @@
 2026-11-23 11:45:00 ET  INFO    Status | broker Mon 19:45 20261123 | phase trade | price 335.29 (iex, spread 0.13%) | range - | pos 150 stop 328.94 | done today | equity 100488
 2026-11-23 12:00:06 ET  INFO    CLOSED 150 GLD @ 336.48 (time exit 20:00 broker time, market)
 2026-11-23 12:00:06 ET  INFO    Status | broker Mon 20:00 20261123 | phase closed | price 335.97 (iex, spread 0.57%) | range - | pos 150 | done today | equity 100634
+2026-11-23 12:15:03 ET  INFO    Status | broker Mon 20:15 20261123 | phase closed | price 335.88 (iex, spread 0.01%) | range - | pos 0 | done today | equity 100634
+2026-11-23 12:30:04 ET  INFO    Status | broker Mon 20:30 20261123 | phase closed | price 335.81 (iex, spread 0.49%) | range - | pos 0 | done today | equity 100634
+2026-11-23 12:44:09 ET  INFO    === Run finished (position 0). The next run takes over. ===
