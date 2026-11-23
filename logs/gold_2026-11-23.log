@@ -19,3 +19,14 @@
 2026-11-23 02:30:02 ET  INFO    Status | broker Mon 10:30 20261123 | phase trade | price 332.46 (overnight, spread 0.05%) | range 326.21-332.39 | pos 150 stop 328.94 | done today | equity 100056
 2026-11-23 02:45:04 ET  INFO    Status | broker Mon 10:45 20261123 | phase trade | price 332.35 (overnight, spread 0.05%) | range 326.21-332.39 | pos 150 stop 328.94 | done today | equity 99976
 2026-11-23 03:00:01 ET  INFO    Status | broker Mon 11:00 20261123 | phase trade | price 331.22 (overnight, spread 0.05%) | range 326.21-332.39 | pos 150 stop 328.94 | done today | equity 99888
+2026-11-23 04:13:52 ET  INFO    === Gold Breakout bot | GLD | PAPER | ORDERS ON | data free | equity 99896 | for 5.83 h ===
+2026-11-23 04:13:52 ET  INFO    Range 00:00-07:00, close 20:00 broker time (Etc/GMT-3) | SL 1.0% of entry | risk $500 per trade | max leverage 1.9x | shorts on
+2026-11-23 04:13:52 ET  INFO    Prop | phase1 | day start equity 100000 | bot daily stop at 98500 (firm 97000) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-23 04:13:52 ET  INFO    Broker day 20261123 | range Sun 16:00-Sun 23:00 ET | trading until Mon 12:00 ET | already traded today
+2026-11-23 04:13:53 ET  INFO    Open position 150 GLD @ 332.26 found | stop 328.94
+2026-11-23 04:13:53 ET  WARNING Only 15-min delayed prices right now (overnight-delayed): the stop is watched late.
+2026-11-23 04:13:53 ET  INFO    Status | broker Mon 12:13 20261123 | phase trade | price 330.98 (overnight-delayed, spread 0.00%) | range - | pos 150 stop 328.94 | done today | equity 99896
+2026-11-23 04:15:01 ET  INFO    Status | broker Mon 12:15 20261123 | phase trade | price 330.97 (delayed_sip-delayed, spread 0.00%) | range - | pos 150 stop 328.94 | done today | equity 99877
+2026-11-23 04:30:03 ET  INFO    Status | broker Mon 12:30 20261123 | phase trade | price 331.44 (delayed_sip-delayed, spread 0.00%) | range - | pos 150 stop 328.94 | done today | equity 99918
+2026-11-23 04:45:00 ET  INFO    Status | broker Mon 12:45 20261123 | phase trade | price 331.71 (delayed_sip-delayed, spread 0.00%) | range - | pos 150 stop 328.94 | done today | equity 99877
+2026-11-23 05:00:02 ET  INFO    Status | broker Mon 13:00 20261123 | phase trade | price 331.44 (delayed_sip-delayed, spread 0.00%) | range - | pos 150 stop 328.94 | done today | equity 99830
