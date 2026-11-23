@@ -8,3 +8,9 @@
 2026-11-23 00:30:03 ET  INFO    Status | broker Mon 08:30 20261123 | phase trade | price 332.04 (overnight, spread 0.10%) | range 326.21-332.39 | pos 0 | waiting | equity 100000
 2026-11-23 00:45:04 ET  INFO    Status | broker Mon 08:45 20261123 | phase trade | price 332.11 (overnight, spread 0.06%) | range 326.21-332.39 | pos 0 | waiting | equity 100000
 2026-11-23 01:00:01 ET  INFO    Status | broker Mon 09:00 20261123 | phase trade | price 331.44 (overnight, spread 0.09%) | range 326.21-332.39 | pos 0 | waiting | equity 100000
+2026-11-23 01:15:00 ET  INFO    Status | broker Mon 09:15 20261123 | phase trade | price 331.25 (overnight, spread 0.20%) | range 326.21-332.39 | pos 0 | waiting | equity 100000
+2026-11-23 01:30:02 ET  INFO    Status | broker Mon 09:30 20261123 | phase trade | price 331.17 (overnight, spread 0.06%) | range 326.21-332.39 | pos 0 | waiting | equity 100000
+2026-11-23 01:42:24 ET  INFO    BREAKOUT LONG: price 332.50 (bid 332.41 / ask 332.59, overnight) crossed 332.39 | 150 shares, limit 333.59 | planned risk $498 (0.50% of equity 100000)
+2026-11-23 01:42:25 ET  INFO    FILLED LONG 150 GLD @ 332.26 (breakout level 332.39, diff -0.13) | STOP 328.94 | risk $498
+2026-11-23 01:45:05 ET  INFO    Status | broker Mon 09:45 20261123 | phase trade | price 332.22 (overnight, spread 0.08%) | range 326.21-332.39 | pos 150 stop 328.94 | done today | equity 99966
+2026-11-23 02:00:01 ET  INFO    Status | broker Mon 10:00 20261123 | phase trade | price 331.77 (overnight, spread 0.05%) | range 326.21-332.39 | pos 150 stop 328.94 | done today | equity 99986
