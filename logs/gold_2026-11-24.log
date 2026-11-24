@@ -36,3 +36,6 @@
 2026-11-24 05:30:03 ET  INFO    Status | broker Tue 13:30 20261124 | phase trade | price 332.00 (delayed_sip-delayed, spread 0.00%) | range 331.67-336.86 | pos -150 stop 334.81 | done today | equity 100582
 2026-11-24 05:45:01 ET  INFO    Status | broker Tue 13:45 20261124 | phase trade | price 331.84 (delayed_sip-delayed, spread 0.00%) | range 331.67-336.86 | pos -150 stop 334.81 | done today | equity 100565
 2026-11-24 06:00:05 ET  INFO    Status | broker Tue 14:00 20261124 | phase trade | price 331.92 (delayed_sip-delayed, spread 0.00%) | range 331.67-336.86 | pos -150 stop 334.81 | done today | equity 100517
+2026-11-24 06:02:02 ET  INFO    Log uploaded to GitHub.
+2026-11-24 06:15:00 ET  INFO    Status | broker Tue 14:15 20261124 | phase trade | price 332.27 (delayed_sip-delayed, spread 0.00%) | range 331.67-336.86 | pos -150 stop 334.81 | done today | equity 100571
+2026-11-24 06:15:26 ET  INFO    === Run finished (position -150). The next run takes over. ===
