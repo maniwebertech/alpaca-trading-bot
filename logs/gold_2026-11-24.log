@@ -1,0 +1,10 @@
+2026-11-24 00:25:33 ET  INFO    Lock taken by 45333169118 (heartbeat every 30 s, takeover after 90 s).
+2026-11-24 00:25:34 ET  INFO    === Gold Breakout bot | GLD | PAPER | ORDERS ON | data free | equity 100634 | for 5.83 h ===
+2026-11-24 00:25:34 ET  INFO    Range 00:00-07:00, close 20:00 broker time (Etc/GMT-3) | SL 1.0% of entry | risk $500 per trade | max leverage 1.9x | shorts on
+2026-11-24 00:25:34 ET  INFO    Prop | phase1 | day start equity 100634 | bot daily stop at 99134 (firm 97634) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-24 00:25:34 ET  INFO    Broker day 20261124 | range Mon 16:00-Mon 23:00 ET | trading until Tue 12:00 ET
+2026-11-24 00:25:34 ET  INFO    RANGE 20261124: high 336.86  low 331.67  width 5.19 (1.56%) | long above 336.86 (SL 333.49), short below 331.67 (SL 334.99)
+2026-11-24 00:25:34 ET  INFO    Status | broker Tue 08:25 20261124 | phase trade | price 332.65 (overnight, spread 0.12%) | range 331.67-336.86 | pos 0 | waiting | equity 100634
+2026-11-24 00:30:04 ET  INFO    Status | broker Tue 08:30 20261124 | phase trade | price 332.45 (overnight, spread 0.02%) | range 331.67-336.86 | pos 0 | waiting | equity 100634
+2026-11-24 00:45:05 ET  INFO    Status | broker Tue 08:45 20261124 | phase trade | price 333.02 (overnight, spread 0.06%) | range 331.67-336.86 | pos 0 | waiting | equity 100634
+2026-11-24 01:00:01 ET  INFO    Status | broker Tue 09:00 20261124 | phase trade | price 332.84 (overnight, spread 0.16%) | range 331.67-336.86 | pos 0 | waiting | equity 100634
