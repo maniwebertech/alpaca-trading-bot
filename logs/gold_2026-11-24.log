@@ -39,3 +39,14 @@
 2026-11-24 06:02:02 ET  INFO    Log uploaded to GitHub.
 2026-11-24 06:15:00 ET  INFO    Status | broker Tue 14:15 20261124 | phase trade | price 332.27 (delayed_sip-delayed, spread 0.00%) | range 331.67-336.86 | pos -150 stop 334.81 | done today | equity 100571
 2026-11-24 06:15:26 ET  INFO    === Run finished (position -150). The next run takes over. ===
+2026-11-24 06:16:27 ET  INFO    Lock taken by 45382603610 (heartbeat every 30 s, takeover after 90 s).
+2026-11-24 06:16:27 ET  INFO    === Gold Breakout bot | GLD | PAPER | ORDERS ON | data free | equity 100561 | for 5.83 h ===
+2026-11-24 06:16:27 ET  INFO    Range 00:00-07:00, close 20:00 broker time (Etc/GMT-3) | SL 1.0% of entry | risk $500 per trade | max leverage 1.9x | shorts on
+2026-11-24 06:16:27 ET  INFO    Prop | phase1 | day start equity 100634 | bot daily stop at 99134 (firm 97634) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-24 06:16:27 ET  INFO    Broker day 20261124 | range Mon 16:00-Mon 23:00 ET | trading until Tue 12:00 ET | already traded today
+2026-11-24 06:16:27 ET  INFO    Open position -150 GLD @ 331.50 found | stop 334.81
+2026-11-24 06:16:27 ET  WARNING Only 15-min delayed prices right now (delayed_sip-delayed): the stop is watched late.
+2026-11-24 06:16:27 ET  INFO    Status | broker Tue 14:16 20261124 | phase trade | price 332.27 (delayed_sip-delayed, spread 0.00%) | range - | pos -150 stop 334.81 | done today | equity 100561
+2026-11-24 06:30:04 ET  INFO    Status | broker Tue 14:30 20261124 | phase trade | price 331.99 (delayed_sip-delayed, spread 0.00%) | range - | pos -150 stop 334.81 | done today | equity 100481
+2026-11-24 06:45:02 ET  INFO    Status | broker Tue 14:45 20261124 | phase trade | price 332.51 (delayed_sip-delayed, spread 0.00%) | range - | pos -150 stop 334.81 | done today | equity 100411
+2026-11-24 07:00:00 ET  INFO    Status | broker Tue 15:00 20261124 | phase trade | price 332.98 (delayed_sip-delayed, spread 0.00%) | range - | pos -150 stop 334.81 | done today | equity 100406
