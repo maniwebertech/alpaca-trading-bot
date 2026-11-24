@@ -60,3 +60,13 @@
 2026-11-24 08:30:03 ET  INFO    Status | broker Tue 16:30 20261124 | phase trade | price 332.62 (delayed_sip-delayed, spread 0.00%) | range - | pos -150 stop 334.81 | done today | equity 100503
 2026-11-24 08:45:02 ET  INFO    Status | broker Tue 16:45 20261124 | phase trade | price 332.37 (delayed_sip-delayed, spread 0.00%) | range - | pos -150 stop 334.81 | done today | equity 100658
 2026-11-24 09:00:01 ET  INFO    Status | broker Tue 17:00 20261124 | phase trade | price 331.33 (delayed_sip-delayed, spread 0.00%) | range - | pos -150 stop 334.81 | done today | equity 100682
+2026-11-24 09:15:01 ET  INFO    Status | broker Tue 17:15 20261124 | phase trade | price 331.17 (delayed_sip-delayed, spread 0.00%) | range - | pos -150 stop 334.81 | done today | equity 100655
+2026-11-24 09:30:04 ET  INFO    Status | broker Tue 17:30 20261124 | phase trade | price 326.48 (iex, spread 3.03%) | range - | pos -150 stop 334.81 | done today | equity 100651
+2026-11-24 09:30:55 ET  INFO    STOP HIT: price 336.39 (iex) vs stop 334.81
+2026-11-24 09:31:17 ET  WARNING Exit market not filled in 20 s (new, filled 0). Retrying with a new price.
+2026-11-24 09:34:34 ET  INFO    STOP HIT: price 336.59 (iex) vs stop 334.81
+2026-11-24 09:34:55 ET  WARNING Exit market not filled in 20 s (partially_filled, filled 20). Retrying with a new price.
+2026-11-24 09:36:27 ET  INFO    STOP HIT: price 336.61 (iex) vs stop 334.81
+2026-11-24 09:36:38 ET  INFO    CLOSED 130 GLD @ 331.76 (stop loss, market)
+2026-11-24 09:45:04 ET  INFO    Status | broker Tue 17:45 20261124 | phase trade | price 331.81 (iex, spread 0.41%) | range - | pos 0 | done today | equity 100593
+2026-11-24 10:00:00 ET  INFO    Status | broker Tue 18:00 20261124 | phase trade | price 331.95 (iex, spread 0.50%) | range - | pos 0 | done today | equity 100593
