@@ -109,3 +109,6 @@
 2026-11-23 23:30:01 ET  INFO    Status | broker Tue 07:30 20261124 | phase trade | price 332.33 (overnight, spread 0.06%) | range 331.67-337.17 | pos 0 | waiting | equity 100634
 2026-11-23 23:45:05 ET  INFO    Status | broker Tue 07:45 20261124 | phase trade | price 332.59 (overnight, spread 0.09%) | range 331.67-337.17 | pos 0 | waiting | equity 100634
 2026-11-24 00:00:03 ET  INFO    Status | broker Tue 08:00 20261124 | phase trade | price 332.44 (overnight, spread 0.01%) | range 331.67-337.17 | pos 0 | waiting | equity 100634
+2026-11-24 00:02:04 ET  INFO    Log uploaded to GitHub.
+2026-11-24 00:15:04 ET  INFO    Status | broker Tue 08:15 20261124 | phase trade | price 333.22 (overnight, spread 0.04%) | range 331.67-337.17 | pos 0 | waiting | equity 100634
+2026-11-24 00:24:27 ET  INFO    === Run finished (position 0). The next run takes over. ===
