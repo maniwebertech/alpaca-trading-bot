@@ -75,3 +75,11 @@
 2026-11-23 12:15:03 ET  INFO    Status | broker Mon 20:15 20261123 | phase closed | price 335.88 (iex, spread 0.01%) | range - | pos 0 | done today | equity 100634
 2026-11-23 12:30:04 ET  INFO    Status | broker Mon 20:30 20261123 | phase closed | price 335.81 (iex, spread 0.49%) | range - | pos 0 | done today | equity 100634
 2026-11-23 12:44:09 ET  INFO    === Run finished (position 0). The next run takes over. ===
+2026-11-23 18:34:36 ET  INFO    Lock taken by 45289921530 (heartbeat every 30 s, takeover after 90 s).
+2026-11-23 18:34:36 ET  INFO    === Gold Breakout bot | GLD | PAPER | ORDERS ON | data free | equity 100634 | for 5.83 h ===
+2026-11-23 18:34:36 ET  INFO    Range 00:00-07:00, close 20:00 broker time (Etc/GMT-3) | SL 1.0% of entry | risk $500 per trade | max leverage 1.9x | shorts on
+2026-11-23 18:34:36 ET  INFO    Prop | phase1 | day start equity 100634 | bot daily stop at 99134 (firm 97634) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-23 18:34:36 ET  INFO    Broker day 20261124 | range Mon 16:00-Mon 23:00 ET | trading until Tue 12:00 ET
+2026-11-23 18:34:36 ET  INFO    Status | broker Tue 02:34 20261124 | phase range | price 332.59 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | waiting | equity 100634
+2026-11-23 18:45:04 ET  INFO    Status | broker Tue 02:45 20261124 | phase range | price 333.02 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | waiting | equity 100634
+2026-11-23 19:00:03 ET  INFO    Status | broker Tue 03:00 20261124 | phase range | price 332.30 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | waiting | equity 100634
