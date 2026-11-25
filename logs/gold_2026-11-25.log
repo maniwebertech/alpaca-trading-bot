@@ -64,3 +64,7 @@
 2026-11-25 16:00:04 ET  INFO    Prop | phase1 | day start equity 101540 | bot daily stop at 100040 (firm 98540) | bot halts below 92000 (firm 90000) | target 108000
 2026-11-25 16:00:04 ET  INFO    Broker day 20261126 | range Wed 16:00-Wed 23:00 ET | trading until Thu 12:00 ET
 2026-11-25 16:00:04 ET  INFO    Status | broker Thu 00:00 20261126 | phase range | price 327.25 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | waiting | equity 101540
+2026-11-25 16:15:00 ET  INFO    Status | broker Thu 00:15 20261126 | phase range | price 327.51 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | waiting | equity 101540
+2026-11-25 16:30:04 ET  INFO    Status | broker Thu 00:30 20261126 | phase range | price 327.30 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | waiting | equity 101540
+2026-11-25 16:45:03 ET  INFO    Status | broker Thu 00:45 20261126 | phase range | price 328.13 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | waiting | equity 101540
+2026-11-25 17:00:02 ET  INFO    Status | broker Thu 01:00 20261126 | phase range | price 327.66 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | waiting | equity 101540
