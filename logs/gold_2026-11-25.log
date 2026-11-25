@@ -34,3 +34,14 @@
 2026-11-25 11:00:02 ET  INFO    Status | broker Wed 19:00 20261125 | phase trade | price 315.64 (iex, spread 0.03%) | range - | pos -154 stop 327.06 | done today | equity 101850
 2026-11-25 11:15:03 ET  INFO    Status | broker Wed 19:15 20261125 | phase trade | price 315.75 (iex, spread 0.46%) | range - | pos -154 stop 327.06 | done today | equity 101766
 2026-11-25 11:26:26 ET  INFO    === Run finished (position -154). The next run takes over. ===
+2026-11-25 11:27:35 ET  INFO    Lock taken by 45653987043 (heartbeat every 30 s, takeover after 90 s).
+2026-11-25 11:27:35 ET  INFO    === Gold Breakout bot | GLD | PAPER | ORDERS ON | data free | equity 101646 | for 5.83 h ===
+2026-11-25 11:27:35 ET  INFO    Range 00:00-07:00, close 20:00 broker time (Etc/GMT-3) | SL 1.0% of entry | risk $500 per trade | max leverage 1.9x | shorts on
+2026-11-25 11:27:35 ET  INFO    Prop | phase1 | day start equity 100593 | bot daily stop at 99093 (firm 97593) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-25 11:27:35 ET  INFO    Broker day 20261125 | range Tue 16:00-Tue 23:00 ET | trading until Wed 12:00 ET | already traded today
+2026-11-25 11:27:36 ET  INFO    Open position -154 GLD @ 323.82 found | stop 327.06
+2026-11-25 11:27:36 ET  INFO    Status | broker Wed 19:27 20261125 | phase trade | price 316.25 (iex, spread 0.77%) | range - | pos -154 stop 327.06 | done today | equity 101646
+2026-11-25 11:30:03 ET  INFO    Status | broker Wed 19:30 20261125 | phase trade | price 316.25 (iex, spread 0.77%) | range - | pos -154 stop 327.06 | done today | equity 101598
+2026-11-25 11:45:05 ET  INFO    Status | broker Wed 19:45 20261125 | phase trade | price 316.86 (iex, spread 0.39%) | range - | pos -154 stop 327.06 | done today | equity 101758
+2026-11-25 12:00:05 ET  INFO    CLOSED 154 GLD @ 317.67 (time exit 20:00 broker time, market)
+2026-11-25 12:00:06 ET  INFO    Status | broker Wed 20:00 20261125 | phase closed | price 316.45 (iex, spread 0.91%) | range - | pos -154 | done today | equity 101540
