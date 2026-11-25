@@ -1,0 +1,10 @@
+2026-11-25 05:36:36 ET  INFO    Lock taken by 45596537312 (heartbeat every 30 s, takeover after 90 s).
+2026-11-25 05:36:36 ET  INFO    === Gold Breakout bot | GLD | PAPER | ORDERS ON | data free | equity 100665 | for 5.83 h ===
+2026-11-25 05:36:36 ET  INFO    Range 00:00-07:00, close 20:00 broker time (Etc/GMT-3) | SL 1.0% of entry | risk $500 per trade | max leverage 1.9x | shorts on
+2026-11-25 05:36:37 ET  INFO    Prop | phase1 | day start equity 100593 | bot daily stop at 99093 (firm 97593) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-25 05:36:37 ET  INFO    Broker day 20261125 | range Tue 16:00-Tue 23:00 ET | trading until Wed 12:00 ET | already traded today
+2026-11-25 05:36:37 ET  INFO    Open position -154 GLD @ 323.82 found | stop 327.06
+2026-11-25 05:36:37 ET  WARNING Only 15-min delayed prices right now (delayed_sip-delayed): the stop is watched late.
+2026-11-25 05:36:37 ET  INFO    Status | broker Wed 13:36 20261125 | phase trade | price 323.67 (delayed_sip-delayed, spread 0.00%) | range - | pos -154 stop 327.06 | done today | equity 100665
+2026-11-25 05:45:04 ET  INFO    Status | broker Wed 13:45 20261125 | phase trade | price 323.46 (delayed_sip-delayed, spread 0.00%) | range - | pos -154 stop 327.06 | done today | equity 100646
+2026-11-25 06:00:02 ET  INFO    Status | broker Wed 14:00 20261125 | phase trade | price 323.47 (delayed_sip-delayed, spread 0.00%) | range - | pos -154 stop 327.06 | done today | equity 100626
