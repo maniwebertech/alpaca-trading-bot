@@ -14,3 +14,21 @@
 2026-11-25 10:00:23 ET  INFO    Bar 09:55 close=618.22 | band 642.92 / 612.45 | VWAP 612.11 | 20d SMA 671.44 | pos 0 | day P&L +0 | equity 102048 | CHECK
 2026-11-25 10:00:23 ET  INFO    Check 10:00: no signal.
 2026-11-25 10:02:04 ET  INFO    HOURLY REPORT | equity 102048 | day P&L +0 (+0.00%) | position 0 | fills today 0 | daily stop room $1500
+2026-11-25 10:02:05 ET  INFO    Log uploaded to GitHub.
+2026-11-25 10:05:20 ET  INFO    Bar 10:00 close=618.37 | band 643.11 / 612.26 | VWAP 612.67 | 20d SMA 671.44 | pos 0 | day P&L +0 | equity 102048
+2026-11-25 10:10:21 ET  INFO    Bar 10:05 close=615.58 | band 643.15 / 612.22 | VWAP 612.87 | 20d SMA 671.44 | pos 0 | day P&L +0 | equity 102048
+2026-11-25 10:15:21 ET  INFO    Bar 10:10 close=615.42 | band 643.61 / 611.78 | VWAP 612.96 | 20d SMA 671.44 | pos 0 | day P&L +0 | equity 102048
+2026-11-25 10:20:21 ET  INFO    Bar 10:15 close=611.27 | band 644.18 / 611.22 | VWAP 612.94 | 20d SMA 671.44 | pos 0 | day P&L +0 | equity 102048
+2026-11-25 10:25:21 ET  INFO    Bar 10:20 close=610.24 | band 644.37 / 611.04 | VWAP 612.87 | 20d SMA 671.44 | pos 0 | day P&L +0 | equity 102048
+2026-11-25 10:30:22 ET  INFO    Bar 10:25 close=610.66 | band 644.32 / 611.09 | VWAP 612.79 | 20d SMA 671.44 | pos 0 | day P&L +0 | equity 102048 | CHECK
+2026-11-25 10:30:22 ET  INFO    SIGNAL SHORT (close below lower band) at close 610.66: 162 shares = $497 risk at the stop ($98,927 position) | TP +1.64 / SL -3.07 from the fill price
+2026-11-25 10:30:22 ET  INFO    ENTRY SENT: SELL 162 QQQ market | id 1b3ec8c8-314e-42a5-bda3-2a616d02f3ff
+2026-11-25 10:30:35 ET  INFO    FILLED SELL 162 QQQ @ 610.91 (signal close 610.66, diff +0.25) | TP 609.27  SL 613.98 | risk $497  reward $266 | exit id 95dede16-6f14-4a44-8bb2-e26de0ca57dc
+2026-11-25 10:35:21 ET  INFO    Bar 10:30 close=613.11 | band 644.86 / 610.56 | VWAP 612.77 | 20d SMA 671.44 | pos -162 | day P&L -317 | equity 101731
+2026-11-25 10:40:21 ET  INFO    Bar 10:35 close=611.29 | band 645.41 / 610.04 | VWAP 612.76 | 20d SMA 671.44 | pos 0 | day P&L -500 | equity 101548
+2026-11-25 10:45:21 ET  INFO    Bar 10:40 close=610.67 | band 646.06 / 609.40 | VWAP 612.73 | 20d SMA 671.44 | pos 0 | day P&L -500 | equity 101548
+2026-11-25 10:50:22 ET  INFO    Bar 10:45 close=611.32 | band 646.56 / 608.92 | VWAP 612.68 | 20d SMA 671.44 | pos 0 | day P&L -500 | equity 101548
+2026-11-25 10:55:22 ET  INFO    Bar 10:50 close=611.31 | band 647.02 / 608.48 | VWAP 612.67 | 20d SMA 671.44 | pos 0 | day P&L -500 | equity 101548
+2026-11-25 11:00:22 ET  INFO    Bar 10:55 close=610.46 | band 646.39 / 609.08 | VWAP 612.64 | 20d SMA 671.44 | pos 0 | day P&L -500 | equity 101548 | CHECK
+2026-11-25 11:00:22 ET  INFO    Check 11:00: no signal.
+2026-11-25 11:02:02 ET  INFO    HOURLY REPORT | equity 101548 | day P&L -500 (-0.49%) | position 0 | fills today 2 | daily stop room $1000
