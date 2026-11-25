@@ -18,3 +18,9 @@
 2026-11-25 07:30:05 ET  INFO    Status | broker Wed 15:30 20261125 | phase trade | price 322.06 (delayed_sip-delayed, spread 0.00%) | range - | pos -154 stop 327.06 | done today | equity 100765
 2026-11-25 07:45:04 ET  INFO    Status | broker Wed 15:45 20261125 | phase trade | price 322.70 (delayed_sip-delayed, spread 0.00%) | range - | pos -154 stop 327.06 | done today | equity 100777
 2026-11-25 08:00:02 ET  INFO    Status | broker Wed 16:00 20261125 | phase trade | price 322.62 (delayed_sip-delayed, spread 0.00%) | range - | pos -154 stop 327.06 | done today | equity 100777
+2026-11-25 08:02:05 ET  WARNING Log upload step git push failed: To https://github.com/maniwebertech/alpaca-trading-bot
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at 1bdf42353c62b075d2427da012c39ef470493f3c but expected 271a063ff16f5c3
+2026-11-25 08:15:03 ET  INFO    Status | broker Wed 16:15 20261125 | phase trade | price 322.62 (delayed_sip-delayed, spread 0.00%) | range - | pos -154 stop 327.06 | done today | equity 100904
+2026-11-25 08:30:01 ET  INFO    Status | broker Wed 16:30 20261125 | phase trade | price 321.80 (delayed_sip-delayed, spread 0.00%) | range - | pos -154 stop 327.06 | done today | equity 100956
+2026-11-25 08:45:00 ET  INFO    Status | broker Wed 16:45 20261125 | phase trade | price 321.46 (delayed_sip-delayed, spread 0.00%) | range - | pos -154 stop 327.06 | done today | equity 101369
+2026-11-25 09:00:04 ET  INFO    Status | broker Wed 17:00 20261125 | phase trade | price 318.56 (delayed_sip-delayed, spread 0.00%) | range - | pos -154 stop 327.06 | done today | equity 101402
