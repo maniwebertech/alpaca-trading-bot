@@ -98,3 +98,8 @@
 2026-11-24 19:30:04 ET  INFO    Status | broker Wed 03:30 20261125 | phase range | price 325.20 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | waiting | equity 100593
 2026-11-24 19:45:04 ET  INFO    Status | broker Wed 03:45 20261125 | phase range | price 324.42 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | waiting | equity 100593
 2026-11-24 20:00:02 ET  INFO    Status | broker Wed 04:00 20261125 | phase range | price 325.34 (overnight, spread 0.20%) | range building 325.34-325.34 (live) | pos 0 | waiting | equity 100593
+2026-11-24 20:02:06 ET  INFO    Log uploaded to GitHub.
+2026-11-24 20:15:04 ET  INFO    Status | broker Wed 04:15 20261125 | phase range | price 324.40 (overnight, spread 0.07%) | range building 323.91-325.84 (live) | pos 0 | waiting | equity 100593
+2026-11-24 20:30:02 ET  INFO    Status | broker Wed 04:30 20261125 | phase range | price 324.52 (overnight, spread 0.25%) | range building 323.65-325.84 (live) | pos 0 | waiting | equity 100593
+2026-11-24 20:45:00 ET  INFO    Status | broker Wed 04:45 20261125 | phase range | price 325.62 (overnight, spread 0.14%) | range building 323.65-325.87 (live) | pos 0 | waiting | equity 100593
+2026-11-24 21:00:03 ET  INFO    Status | broker Wed 05:00 20261125 | phase range | price 325.06 (overnight, spread 0.07%) | range building 323.65-325.92 (live) | pos 0 | waiting | equity 100593
