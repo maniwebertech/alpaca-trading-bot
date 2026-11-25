@@ -32,3 +32,5 @@
 2026-11-25 10:30:02 ET  INFO    Status | broker Wed 18:30 20261125 | phase trade | price 311.64 (iex, spread 2.09%) | range - | pos -154 stop 327.06 | done today | equity 102014
 2026-11-25 10:45:02 ET  INFO    Status | broker Wed 18:45 20261125 | phase trade | price 315.31 (iex, spread 0.12%) | range - | pos -154 stop 327.06 | done today | equity 101878
 2026-11-25 11:00:02 ET  INFO    Status | broker Wed 19:00 20261125 | phase trade | price 315.64 (iex, spread 0.03%) | range - | pos -154 stop 327.06 | done today | equity 101850
+2026-11-25 11:15:03 ET  INFO    Status | broker Wed 19:15 20261125 | phase trade | price 315.75 (iex, spread 0.46%) | range - | pos -154 stop 327.06 | done today | equity 101766
+2026-11-25 11:26:26 ET  INFO    === Run finished (position -154). The next run takes over. ===
