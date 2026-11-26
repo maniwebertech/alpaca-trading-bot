@@ -106,3 +106,5 @@
 2026-11-25 22:45:03 ET  INFO    Status | broker Thu 06:45 20261126 | phase range | price no data | range - | pos 0 | waiting | equity 101540
 2026-11-25 23:00:02 ET  INFO    Range: waiting for the delayed bars of the last 15 minutes (bot was not watching then).
 2026-11-25 23:00:03 ET  INFO    Status | broker Thu 07:00 20261126 | phase trade | price no data | range - | pos 0 | waiting | equity 101540
+2026-11-25 23:02:06 ET  INFO    Log uploaded to GitHub.
+2026-11-25 23:08:22 ET  INFO    === Run finished (position 0). The next run takes over. ===
