@@ -6,3 +6,8 @@
 2026-11-26 02:54:27 ET  INFO    RANGE 20261126: high 329.27  low 326.00  width 3.27 (1.00%) | long above 329.27 (SL 325.98), short below 326.00 (SL 329.26)
 2026-11-26 02:54:27 ET  INFO    Status | broker Thu 10:54 20261126 | phase trade | price no data | range 326.00-329.27 | pos 0 | waiting | equity 101540
 2026-11-26 03:00:03 ET  INFO    Status | broker Thu 11:00 20261126 | phase trade | price no data | range 326.00-329.27 | pos 0 | waiting | equity 101540
+2026-11-26 03:02:01 ET  INFO    Log uploaded to GitHub.
+2026-11-26 03:15:02 ET  INFO    Status | broker Thu 11:15 20261126 | phase trade | price no data | range 326.00-329.27 | pos 0 | waiting | equity 101540
+2026-11-26 03:30:04 ET  INFO    Status | broker Thu 11:30 20261126 | phase trade | price no data | range 326.00-329.27 | pos 0 | waiting | equity 101538
+2026-11-26 03:45:00 ET  INFO    Status | broker Thu 11:45 20261126 | phase trade | price no data | range 326.00-329.27 | pos 0 | waiting | equity 101538
+2026-11-26 04:00:02 ET  INFO    Status | broker Thu 12:00 20261126 | phase trade | price no data | range 326.00-329.27 | pos 0 | waiting | equity 101538
