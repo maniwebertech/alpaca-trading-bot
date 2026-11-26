@@ -30,3 +30,6 @@
 2026-11-26 07:30:02 ET  INFO    Status | broker Thu 15:30 20261126 | phase trade | price no data | range 326.00-329.27 | pos 0 | waiting | equity 101538
 2026-11-26 07:45:04 ET  INFO    Status | broker Thu 15:45 20261126 | phase trade | price no data | range 326.00-329.27 | pos 0 | waiting | equity 101538
 2026-11-26 08:00:01 ET  INFO    Status | broker Thu 16:00 20261126 | phase trade | price no data | range 326.00-329.27 | pos 0 | waiting | equity 101538
+2026-11-26 08:15:00 ET  INFO    Status | broker Thu 16:15 20261126 | phase trade | price no data | range 326.00-329.27 | pos 0 | waiting | equity 101538
+2026-11-26 08:30:02 ET  INFO    Status | broker Thu 16:30 20261126 | phase trade | price no data | range 326.00-329.27 | pos 0 | waiting | equity 101538
+2026-11-26 08:44:19 ET  INFO    === Run finished (position 0). The next run takes over. ===
