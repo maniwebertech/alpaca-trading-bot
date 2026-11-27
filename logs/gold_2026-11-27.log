@@ -38,3 +38,10 @@
 2026-11-27 08:02:03 ET  WARNING Log upload step git push failed: To https://github.com/maniwebertech/alpaca-trading-bot
  ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at 52c10dd312933337a8feab8c5f2cb3c88646dfe9 but expected dcdd541adadaef8
 2026-11-27 08:04:14 ET  INFO    === Run finished (position 150). The next run takes over. ===
+2026-11-27 13:54:23 ET  INFO    Lock taken by 46052826684 (heartbeat every 30 s, takeover after 90 s).
+2026-11-27 13:54:23 ET  INFO    === Gold Breakout bot | GLD | PAPER | ORDERS ON | data free | equity 101433 | for 5.83 h ===
+2026-11-27 13:54:23 ET  INFO    Range 00:00-07:00, close 20:00 broker time (Etc/GMT-3) | SL 1.0% of entry | risk $500 per trade | max leverage 1.9x | shorts on
+2026-11-27 13:54:24 ET  INFO    Prop | phase1 | day start equity 101538 | bot daily stop at 100038 (firm 98538) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-27 13:54:24 ET  INFO    Broker day 20261127 | range Thu 16:00-Thu 23:00 ET | trading until Fri 12:00 ET | already traded today
+2026-11-27 13:54:24 ET  INFO    Status | broker Fri 21:54 20261127 | phase closed | price 333.72 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 101433
+2026-11-27 14:00:04 ET  INFO    Status | broker Fri 22:00 20261127 | phase closed | price 333.69 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 101433
