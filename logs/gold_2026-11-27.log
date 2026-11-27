@@ -9,3 +9,9 @@
 2026-11-27 02:30:04 ET  INFO    Status | broker Fri 10:30 20261127 | phase trade | price 335.06 (overnight, spread 0.05%) | range - | pos 150 stop 329.96 | done today | equity 101820
 2026-11-27 02:45:04 ET  INFO    Status | broker Fri 10:45 20261127 | phase trade | price 335.08 (overnight, spread 0.08%) | range - | pos 150 stop 329.96 | done today | equity 101792
 2026-11-27 03:00:04 ET  INFO    Status | broker Fri 11:00 20261127 | phase trade | price 335.15 (overnight, spread 0.05%) | range - | pos 150 stop 329.96 | done today | equity 101820
+2026-11-27 03:02:06 ET  INFO    Log uploaded to GitHub.
+2026-11-27 03:15:01 ET  INFO    Status | broker Fri 11:15 20261127 | phase trade | price 336.44 (overnight, spread 0.01%) | range - | pos 150 stop 329.96 | done today | equity 101966
+2026-11-27 03:30:01 ET  INFO    Status | broker Fri 11:30 20261127 | phase trade | price 336.89 (overnight, spread 0.03%) | range - | pos 150 stop 329.96 | done today | equity 102041
+2026-11-27 03:45:01 ET  INFO    Status | broker Fri 11:45 20261127 | phase trade | price 336.65 (overnight, spread 0.23%) | range - | pos 150 stop 329.96 | done today | equity 102030
+2026-11-27 04:00:01 ET  WARNING Only 15-min delayed prices right now (overnight-delayed): the stop is watched late.
+2026-11-27 04:00:01 ET  INFO    Status | broker Fri 12:00 20261127 | phase trade | price 336.76 (overnight-delayed, spread 0.00%) | range - | pos 150 stop 329.96 | done today | equity 102128
