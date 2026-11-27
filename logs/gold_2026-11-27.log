@@ -35,3 +35,6 @@
 2026-11-27 07:30:01 ET  INFO    Status | broker Fri 15:30 20261127 | phase trade | price 336.19 (delayed_sip-delayed, spread 0.00%) | range - | pos 150 stop 329.96 | done today | equity 101966
 2026-11-27 07:45:03 ET  INFO    Status | broker Fri 15:45 20261127 | phase trade | price 336.14 (delayed_sip-delayed, spread 0.00%) | range - | pos 150 stop 329.96 | done today | equity 101930
 2026-11-27 08:00:00 ET  INFO    Status | broker Fri 16:00 20261127 | phase trade | price 335.90 (delayed_sip-delayed, spread 0.00%) | range - | pos 150 stop 329.96 | done today | equity 101966
+2026-11-27 08:02:03 ET  WARNING Log upload step git push failed: To https://github.com/maniwebertech/alpaca-trading-bot
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at 52c10dd312933337a8feab8c5f2cb3c88646dfe9 but expected dcdd541adadaef8
+2026-11-27 08:04:14 ET  INFO    === Run finished (position 150). The next run takes over. ===
