@@ -1,0 +1,11 @@
+2026-11-27 02:14:23 ET  INFO    Lock taken by 45957047957 (heartbeat every 30 s, takeover after 90 s).
+2026-11-27 02:14:23 ET  INFO    === Gold Breakout bot | GLD | PAPER | ORDERS ON | data free | equity 101826 | for 5.83 h ===
+2026-11-27 02:14:23 ET  INFO    Range 00:00-07:00, close 20:00 broker time (Etc/GMT-3) | SL 1.0% of entry | risk $500 per trade | max leverage 1.9x | shorts on
+2026-11-27 02:14:23 ET  INFO    Prop | phase1 | day start equity 101538 | bot daily stop at 100038 (firm 98538) | bot halts below 92000 (firm 90000) | target 108000
+2026-11-27 02:14:23 ET  INFO    Broker day 20261127 | range Thu 16:00-Thu 23:00 ET | trading until Fri 12:00 ET | already traded today
+2026-11-27 02:14:23 ET  INFO    Open position 150 GLD @ 333.29 found | stop 329.96
+2026-11-27 02:14:23 ET  INFO    Status | broker Fri 10:14 20261127 | phase trade | price 335.19 (overnight, spread 0.01%) | range - | pos 150 stop 329.96 | done today | equity 101826
+2026-11-27 02:15:03 ET  INFO    Status | broker Fri 10:15 20261127 | phase trade | price 335.61 (overnight, spread 0.05%) | range - | pos 150 stop 329.96 | done today | equity 101832
+2026-11-27 02:30:04 ET  INFO    Status | broker Fri 10:30 20261127 | phase trade | price 335.06 (overnight, spread 0.05%) | range - | pos 150 stop 329.96 | done today | equity 101820
+2026-11-27 02:45:04 ET  INFO    Status | broker Fri 10:45 20261127 | phase trade | price 335.08 (overnight, spread 0.08%) | range - | pos 150 stop 329.96 | done today | equity 101792
+2026-11-27 03:00:04 ET  INFO    Status | broker Fri 11:00 20261127 | phase trade | price 335.15 (overnight, spread 0.05%) | range - | pos 150 stop 329.96 | done today | equity 101820
