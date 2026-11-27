@@ -45,3 +45,9 @@
 2026-11-27 13:54:24 ET  INFO    Broker day 20261127 | range Thu 16:00-Thu 23:00 ET | trading until Fri 12:00 ET | already traded today
 2026-11-27 13:54:24 ET  INFO    Status | broker Fri 21:54 20261127 | phase closed | price 333.72 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 101433
 2026-11-27 14:00:04 ET  INFO    Status | broker Fri 22:00 20261127 | phase closed | price 333.69 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 101433
+2026-11-27 14:02:04 ET  WARNING Log upload step git push failed: To https://github.com/maniwebertech/alpaca-trading-bot
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at 06fb0217f27a344cdb1288b378d3844d3f6afb2f but expected 29e6c662ac3a2f2
+2026-11-27 14:15:02 ET  INFO    Status | broker Fri 22:15 20261127 | phase closed | price 333.71 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 101433
+2026-11-27 14:30:04 ET  INFO    Status | broker Fri 22:30 20261127 | phase closed | price 333.81 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 101433
+2026-11-27 14:45:00 ET  INFO    Status | broker Fri 22:45 20261127 | phase closed | price 333.80 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 101433
+2026-11-27 15:00:01 ET  INFO    Status | broker Fri 23:00 20261127 | phase closed | price 334.50 (delayed_sip-delayed, spread 0.00%) | range - | pos 0 | done today | equity 101433
